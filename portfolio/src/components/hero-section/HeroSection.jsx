@@ -97,7 +97,7 @@ const HeroSection = () => {
 
           {index === heroHeadingContent.length - 1 && (
             <motion.h2
-              transition={{ type: "spring", stiffness: 100, delay: 4 }}
+              transition={{ type: "spring", stiffness: 60, delay: 4 }}
               initial={{ y: 100, opacity: 0 }}
               animate={{
                 y: 0,

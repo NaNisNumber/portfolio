@@ -1,13 +1,17 @@
 import "./App.css";
 import { Fragment } from "react";
-import HeroSection from "./components/hero-section/HeroSection";
-import { Navbar } from "./components/navbar/Navbar";
+import Home from "./pages/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 function App() {
   return (
-    <Fragment>
-      <Navbar />
-      <HeroSection />
-    </Fragment>
+    <BrowserRouter>
+      <Fragment>
+        <Routes>
+          <Route path="/portfolio-website" element={<Home />} />
+        </Routes>
+      </Fragment>
+    </BrowserRouter>
   );
 }
 
