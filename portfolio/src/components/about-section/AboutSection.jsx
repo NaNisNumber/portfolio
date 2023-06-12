@@ -1,5 +1,5 @@
 import React from "react";
-import "./About.scss";
+import "./AboutSection.scss";
 import { motion } from "framer-motion";
 const About = () => {
   return (
@@ -62,7 +62,7 @@ const About = () => {
           <motion.p
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            initial={{ opacity: 0, y: 200 }}
+            initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="portfolio__about-text"
           >
