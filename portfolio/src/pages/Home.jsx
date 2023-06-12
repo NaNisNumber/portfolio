@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import HeroSection from "../components/hero-section/HeroSection";
-import About from "../components/about/About";
+import About from "../components/about-section/About";
 const Home = () => {
   return (
     <Fragment>
