@@ -1,5 +1,8 @@
 @use "../../mixins/mixins.scss" as mixins;
-
+:root {
+  --floatSpeed: 3s;
+  --floatDistance: 20px;
+}
 .portfolio__portfolio-section {
   background-color: #000;
   min-height: 100vh;
@@ -8,11 +11,416 @@
     padding: 4.8rem 2.4rem;
   }
 }
-
 .portfolio__portfolio-header {
+  margin-bottom: 2.4rem;
 }
 .portfolio__portfolio-heading {
   color: #c7682b;
   font-size: 2.4rem;
   font-weight: 700;
+  @include mixins.respond-to(large) {
+    text-align: right;
+  }
+}
+.portfolio__portfolio-container {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+
+  grid-template-areas:
+    ".... top ..... "
+    "left sphere right"
+    ".... bottom .....";
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  @include mixins.respond-to(large) {
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(3, 150px);
+    width: 50%;
+  }
+}
+.portfolio__portfolio-sphere {
+  grid-area: sphere;
+  align-self: center;
+  background-color: #fff;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  @include mixins.respond-to(large) {
+    height: 75px;
+    width: 75px;
+  }
+}
+.portfolio__portfolio-project-container {
+  background-color: #fff;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  @include mixins.respond-to(large) {
+    height: 150px;
+    width: 150px;
+  }
+}
+
+.portfolio__portfolio-project-container--bottom {
+  grid-area: bottom;
+  align-self: start;
+}
+.portfolio__portfolio-project-container--top {
+  grid-area: top;
+  align-self: end;
+}
+.portfolio__portfolio-project-container--right {
+  grid-area: right;
+  justify-self: start;
+}
+.portfolio__portfolio-project-container--left {
+  grid-area: left;
+  justify-self: end;
+}
+.portfolio__portfolio-project-text {
+  font-size: 1rem;
+  color: red;
+  font-family: "Lato";
+}
+/* FLOAT ANIMATION CLASSES */
+
+.portfolio__portfolio-project-container--bottom-float {
+  animation: float-bottom var(--floatSpeed) alternate infinite;
+}
+.portfolio__portfolio-project-container--top-float {
+  animation: float-top var(--floatSpeed) alternate infinite;
+}
+.portfolio__portfolio-project-container--right-float {
+  animation: float-right var(--floatSpeed) alternate infinite;
+}
+.portfolio__portfolio-project-container--left-float {
+  animation: float-left var(--floatSpeed) alternate infinite;
+}
+
+/* PULL ANIMATION CLASSES*/
+.portfolio__portfolio-project-container--bottom-pull {
+  animation: pull-bottom 1s forwards;
+}
+.portfolio__portfolio-project-container--top-pull {
+  animation: pull-top 1s forwards;
+}
+.portfolio__portfolio-project-container--right-pull {
+  animation: pull-right 1s forwards;
+}
+.portfolio__portfolio-project-container--left-pull {
+  animation: pull-left 1s forwards;
+}
+
+/* PULL MOBILE ANIMATION CLASSES*/
+.portfolio__portfolio-project-container--bottom-pull-mb {
+  animation: pull-bottom-mb 1s forwards;
+}
+.portfolio__portfolio-project-container--top-pull-mb {
+  animation: pull-top-mb 1s forwards;
+}
+.portfolio__portfolio-project-container--right-pull-mb {
+  animation: pull-right-mb 1s forwards;
+}
+.portfolio__portfolio-project-container--left-pull-mb {
+  animation: pull-left-mb 1s forwards;
+}
+
+/* EXPAND ANIMATION CLASSES */
+.expand {
+  animation: expand 1s 2s forwards;
+}
+.expand-mb {
+  animation: expand-mb 1s 2s forwards;
+}
+/* PULL ANIMATIONS REVERSE CLASSES*/
+.portfolio__portfolio-project-container--bottom-pull-reverse {
+  animation: pull-bottom-reverse 1s backwards;
+}
+.portfolio__portfolio-project-container--top-pull-reverse {
+  animation: pull-top-reverse 1s 0.5s backwards;
+}
+.portfolio__portfolio-project-container--right-pull-reverse {
+  animation: pull-right-reverse 1s 1s backwards;
+}
+.portfolio__portfolio-project-container--left-pull-reverse {
+  animation: pull-left-reverse 1s 1.5s backwards;
+}
+/* PULL ANIMATIONS REVERSE MOBILE CLASSES*/
+.portfolio__portfolio-project-container--bottom-pull-reverse-mb {
+  animation: pull-bottom-reverse-mb 1s backwards;
+}
+.portfolio__portfolio-project-container--top-pull-reverse-mb {
+  animation: pull-top-reverse-mb 1s 0.5s backwards;
+}
+.portfolio__portfolio-project-container--right-pull-reverse-mb {
+  animation: pull-right-reverse-mb 1s 1s backwards;
+}
+.portfolio__portfolio-project-container--left-pull-reverse-mb {
+  animation: pull-left-reverse-mb 1s 1.5s backwards;
+}
+
+/* FLOAT ANIMATIONS */
+
+@keyframes float-left {
+  0% {
+  }
+  100% {
+    transform: translate(var(--floatDistance));
+  }
+}
+@keyframes float-right {
+  0% {
+  }
+  100% {
+    transform: translate(calc(var(--floatDistance) * -1));
+  }
+}
+@keyframes float-top {
+  0% {
+  }
+  100% {
+    transform: translateY(var(--floatDistance));
+  }
+}
+@keyframes float-bottom {
+  0% {
+  }
+  100% {
+    transform: translateY(calc(var(--floatDistance) * -1));
+  }
+}
+
+/* PULL ANIMATIONS */
+
+@keyframes pull-bottom {
+  0% {
+  }
+  100% {
+    transform: translateY(-100px);
+    width: 0;
+    height: 0;
+    display: none;
+  }
+}
+@keyframes pull-top {
+  0% {
+  }
+  100% {
+    transform: translateY(100px);
+    width: 0;
+    height: 0;
+    display: none;
+  }
+}
+
+@keyframes pull-right {
+  0% {
+  }
+  100% {
+    transform: translateX(-100px);
+    width: 0;
+    height: 0;
+    display: none;
+  }
+}
+@keyframes pull-left {
+  0% {
+  }
+
+  100% {
+    transform: translateX(100px);
+    width: 0;
+    height: 0;
+    display: none;
+  }
+}
+
+/* PULL ANIMATIONS MOBILE */
+
+@keyframes pull-bottom-mb {
+  0% {
+  }
+  100% {
+    transform: translateY(-50px);
+    width: 0;
+    height: 0;
+    display: none;
+  }
+}
+@keyframes pull-top-mb {
+  0% {
+  }
+  100% {
+    transform: translateY(50px);
+    width: 0;
+    height: 0;
+    display: none;
+  }
+}
+
+@keyframes pull-right-mb {
+  0% {
+  }
+  100% {
+    transform: translateX(-50px);
+    width: 0;
+    height: 0;
+    display: none;
+  }
+}
+@keyframes pull-left-mb {
+  0% {
+  }
+
+  100% {
+    transform: translateX(50px);
+    width: 0;
+    height: 0;
+    display: none;
+  }
+}
+
+/* PULL ANIMATIONS REVERSE*/
+
+@keyframes pull-bottom-reverse {
+  0% {
+    display: block;
+    width: 0;
+    height: 0;
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0);
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@keyframes pull-top-reverse {
+  0% {
+    display: block;
+    width: 0;
+    height: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translateY(0);
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@keyframes pull-right-reverse {
+  0% {
+    display: block;
+    width: 0;
+    height: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(0);
+    width: 150px;
+    height: 150px;
+  }
+}
+@keyframes pull-left-reverse {
+  0% {
+    display: block;
+    width: 0;
+    height: 0;
+    transform: translateX(100px);
+  }
+
+  100% {
+    transform: translateX(0);
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* PULL ANIMATIONS REVERSE MOBILE*/
+
+@keyframes pull-bottom-reverse-mb {
+  0% {
+    display: block;
+    width: 0;
+    height: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@keyframes pull-top-reverse-mb {
+  0% {
+    display: block;
+    width: 0;
+    height: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    transform: translateY(0);
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@keyframes pull-right-reverse-mb {
+  0% {
+    display: block;
+    width: 0;
+    height: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(0);
+    width: 100px;
+    height: 100px;
+  }
+}
+@keyframes pull-left-reverse-mb {
+  0% {
+    display: block;
+    width: 0;
+    height: 0;
+    transform: translateX(50px);
+  }
+
+  100% {
+    transform: translateX(0);
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* EXPAND ANIMATION */
+
+@keyframes expand {
+  0% {
+  }
+
+  100% {
+    width: calc(100% + 10rem);
+    height: 150px;
+    border-radius: 0;
+  }
+}
+
+/* EXPAND MOBILE ANIMATION */
+
+@keyframes expand-mb {
+  0% {
+  }
+
+  100% {
+    width: calc(100%);
+    height: 100px;
+    border-radius: 0;
+  }
 }
