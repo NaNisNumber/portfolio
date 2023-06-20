@@ -2,29 +2,128 @@ import React, { Fragment, useRef } from "react";
 import "./PortfolioSection.scss";
 
 const Portfolio = () => {
-  const containerBottomRef = useRef();
+  const projectsData = [
+    {
+      projectExists: false,
+      name: null,
+      livePreviewUrl: null,
+      repoUrl: null,
+      aboutProjectUrl: null,
+      position: "left",
+    },
+    {
+      projectExists: false,
+      name: null,
+      livePreviewUrl: null,
+      repoUrl: null,
+      aboutProjectUrl: null,
+      position: "top",
+    },
+    {
+      projectExists: true,
+      name: "Retro Games Website",
+      livePreviewUrl: "https://nanisnumber.github.io/Retro-games-website_P/",
+      repoUrl: "https://github.com/NaNisNumber/Retro-games-website_P",
+      aboutProjectUrl: null,
+      position: "right",
+    },
+    {
+      projectExists: false,
+      name: null,
+      livePreviewUrl: null,
+      repoUrl: null,
+      aboutProjectUrl: null,
+      position: "bottom",
+    },
+  ];
+
+  const projects = projectsData.map((project) => {
+    const projectExists = project.projectExists;
+    const projectName = project.name;
+    const livePreviewUrl = project.livePreviewUrl;
+    const repoUrl = project.repoUrl;
+    const aboutProjectUrl = project.aboutProjectUrl;
+    const position = project.position;
+
+    return (
+      <div
+        onClick={(e) => {
+          revealProjectHandler(e);
+        }}
+        className={`portfolio__portfolio-project-container portfolio__portfolio-project-container--${position} portfolio__portfolio-project-container--${position}-float`}
+        data-position={position}
+        data-container="project"
+      >
+        {projectExists && (
+          <div className="portfolio__portfolio-project-inner-container">
+            <p className="portfolio__portfolio__project-name">
+              {`${projectName}`}
+            </p>
+            <a
+              className="portfolio__portfolio-project-link"
+              href={`${livePreviewUrl}`}
+            >
+              <p>Live preview</p>
+            </a>
+            <a
+              className="portfolio__portfolio-project-link"
+              href={`${repoUrl}`}
+            >
+              <p>Github repo</p>
+            </a>
+            <a
+              className="portfolio__portfolio-project-link"
+              href={`${aboutProjectUrl}`}
+            >
+              <p>About project</p>
+            </a>
+          </div>
+        )}
+        {projectExists && (
+          <ion-icon
+            data-mark="question"
+            class="portfolio__portfolio-project-question-mark"
+            name="help-outline"
+          ></ion-icon>
+        )}
+      </div>
+    );
+  });
 
   const revealProjectHandler = function (e) {
     const mediaQuery = "(max-width: 900px)";
     const mediaIsMatching = window.matchMedia(mediaQuery).matches;
-    const target = e.target;
+    let target = e.target;
     const projectContainers = document.querySelectorAll(
       ".portfolio__portfolio-project-container"
     );
 
     let delay = 0;
+    let isRevealed = false;
+
+    if (target.dataset.mark == "question") {
+      target = target.parentElement;
+    }
+    const questionMark = target.lastChild;
 
     for (let i = 0; i < projectContainers.length; i++) {
       const container = projectContainers[i];
       const position = container.dataset.position;
+      /* prevent revealing two projects at the same time by checking if the expand class is already present
+      on one of the containers */
+      if (container.classList.contains("expand")) {
+        isRevealed = true;
+      } else if (container.classList.contains("expand-mb")) {
+        isRevealed = true;
+      }
 
       container.classList.remove(
-        "expand",
-        "expand-mb",
         `portfolio__portfolio-project-container--${position}-pull-reverse`,
         `portfolio__portfolio-project-container--${position}-pull-reverse-mb`
       );
+
       if (container === target) continue;
+
       delay = delay + 500;
 
       (function (delay) {
@@ -42,11 +141,24 @@ const Portfolio = () => {
       })(delay);
     }
 
-    if (mediaIsMatching) {
-      target.classList.add("expand-mb");
-    } else {
-      target.classList.add("expand");
+    if (target.dataset.container && !isRevealed) {
+      if (mediaIsMatching) {
+        target.classList.add("expand-mb");
+      } else {
+        target.classList.add("expand");
+      }
     }
+
+    target.addEventListener("animationend", function onAnimationEnd() {
+      target.removeEventListener("animationend", onAnimationEnd);
+      if (!target.firstChild) return;
+      questionMark.classList.add(
+        "portfolio__portfolio-project-question-mark-hidden"
+      );
+      target.firstChild.classList.add(
+        "portfolio__portfolio-project-inner-container-display"
+      );
+    });
   };
 
   const reverseRevealHandler = function () {
@@ -58,6 +170,23 @@ const Portfolio = () => {
 
     projectContainers.forEach((container) => {
       const position = container.dataset.position;
+      const questionMark = container.lastChild;
+
+      if (questionMark) {
+        questionMark.classList.add(
+          "portfolio__portfolio-project-question-mark-hidden"
+        );
+      }
+
+      container.addEventListener("animationend", function onAnimationEnd() {
+        container.removeEventListener("animationend", onAnimationEnd);
+        if (questionMark) {
+          questionMark.classList.remove(
+            "portfolio__portfolio-project-question-mark-hidden"
+          );
+        }
+      });
+
       if (mediaIsMatching) {
         container.classList.add(
           `portfolio__portfolio-project-container--${position}-pull-reverse-mb`
@@ -72,8 +201,15 @@ const Portfolio = () => {
         `portfolio__portfolio-project-container--${position}-pull`,
         `portfolio__portfolio-project-container--${position}-pull-mb`,
         `portfolio__portfolio-project-container--${position}-float`,
-        "expand"
+        "expand",
+        "expand-mb"
       );
+
+      if (container.firstChild) {
+        container.firstChild.classList.remove(
+          "portfolio__portfolio-project-inner-container-display"
+        );
+      }
 
       if (position === "left") {
         container.addEventListener("animationend", function onAnimationEnd() {
@@ -101,44 +237,12 @@ const Portfolio = () => {
         </header>
         <div className="portfolio__portfolio-container">
           <div
-            onClick={(e) => {
-              revealProjectHandler(e);
-            }}
-            className="portfolio__portfolio-project-container portfolio__portfolio-project-container--left portfolio__portfolio-project-container--left-float"
-            data-position="left"
-          ></div>
-          <div
-            onClick={(e) => {
-              revealProjectHandler(e);
-            }}
-            className="portfolio__portfolio-project-container portfolio__portfolio-project-container--top portfolio__portfolio-project-container--top-float"
-            data-position="top"
-          ></div>
-          <div
             onClick={() => {
               reverseRevealHandler();
             }}
             className="portfolio__portfolio-sphere"
           ></div>
-          <div
-            onClick={(e) => {
-              revealProjectHandler(e);
-            }}
-            className="portfolio__portfolio-project-container portfolio__portfolio-project-container--right portfolio__portfolio-project-container--right-float "
-            data-position="right"
-          >
-            {/* <p className="portfolio__portfolio-project-text">Live preview</p>
-            <p className="portfolio__portfolio-project-text">Github repo</p>
-            <p className="portfolio__portfolio-project-text">About project</p> */}
-          </div>
-          <div
-            onClick={(e) => {
-              revealProjectHandler(e);
-            }}
-            ref={containerBottomRef}
-            className="portfolio__portfolio-project-container portfolio__portfolio-project-container--bottom portfolio__portfolio-project-container--bottom-float "
-            data-position="bottom"
-          ></div>
+          {projects}
         </div>
       </section>
     </Fragment>
