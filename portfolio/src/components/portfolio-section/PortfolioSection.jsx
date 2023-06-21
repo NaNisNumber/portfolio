@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from "react";
+import React, { Fragment } from "react";
 import "./PortfolioSection.scss";
 
 const Portfolio = () => {
@@ -104,11 +104,12 @@ const Portfolio = () => {
     if (target.dataset.mark == "question") {
       target = target.parentElement;
     }
-    const questionMark = target.lastChild;
+    const targetQuestionMark = target.lastChild;
 
     for (let i = 0; i < projectContainers.length; i++) {
       const container = projectContainers[i];
       const position = container.dataset.position;
+      const questionMark = container.lastChild;
       /* prevent revealing two projects at the same time by checking if the expand class is already present
       on one of the containers */
       if (container.classList.contains("expand")) {
@@ -123,6 +124,13 @@ const Portfolio = () => {
       );
 
       if (container === target) continue;
+      /* when the user click to reveal a project hide all the question marks from the other projects that are
+      not the targeted one to prevent stacking of the question marks inside the sphere */
+      if (questionMark) {
+        questionMark.classList.add(
+          "portfolio__portfolio-project-question-mark-hidden"
+        );
+      }
 
       delay = delay + 500;
 
@@ -152,7 +160,7 @@ const Portfolio = () => {
     target.addEventListener("animationend", function onAnimationEnd() {
       target.removeEventListener("animationend", onAnimationEnd);
       if (!target.firstChild) return;
-      questionMark.classList.add(
+      targetQuestionMark.classList.add(
         "portfolio__portfolio-project-question-mark-hidden"
       );
       target.firstChild.classList.add(
