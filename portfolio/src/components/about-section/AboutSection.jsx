@@ -3,7 +3,7 @@ import "./AboutSection.scss";
 import { motion } from "framer-motion";
 const About = () => {
   return (
-    <section className="portfolio__about-section">
+    <section id="about" className="portfolio__about-section">
       <div className="portfolio__about-container">
         <header className="portfolio__about-header">
           <motion.h1

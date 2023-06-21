@@ -239,7 +239,7 @@ const Portfolio = () => {
 
   return (
     <Fragment>
-      <section className="portfolio__portfolio-section">
+      <section id="portfolio" className="portfolio__portfolio-section">
         <header className="portfolio__portfolio-header">
           <h1 className="portfolio__portfolio-heading">My projects</h1>
         </header>

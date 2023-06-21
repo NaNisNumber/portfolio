@@ -78,7 +78,7 @@ const HeroSection = () => {
   }, [headingCurrentContent]);
 
   return (
-    <section className="portfolio__hero-section">
+    <section id="hero" className="portfolio__hero-section">
       <div className="portfolio__hero-header-container">
         <header className="portfolio__hero-header">
           <div className="portfolio__hero-header-inner-container">
