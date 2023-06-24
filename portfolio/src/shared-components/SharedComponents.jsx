@@ -2,10 +2,10 @@ import React, { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/navbar/Navbar";
 
-const SharedComponents = () => {
+const SharedComponents = ({ setCurrentScrollLocation }) => {
   return (
     <Fragment>
-      <Navbar />
+      <Navbar setCurrentScrollLocation={setCurrentScrollLocation} />
       <Outlet />
     </Fragment>
   );

@@ -1,7 +1,11 @@
 import React, { Fragment } from "react";
 import "./PortfolioSection.scss";
+import { Link } from "react-router-dom";
+import { animateScroll } from "react-scroll";
 
 const Portfolio = () => {
+  const scrollToTop = animateScroll.scrollToTop;
+
   const projectsData = [
     {
       projectExists: false,
@@ -24,7 +28,7 @@ const Portfolio = () => {
       name: "Retro Games Website",
       livePreviewUrl: "https://nanisnumber.github.io/Retro-games-website_P/",
       repoUrl: "https://github.com/NaNisNumber/Retro-games-website_P",
-      aboutProjectUrl: null,
+      aboutProjectUrl: "/portfolio-website/about-project/0",
       position: "right",
     },
     {
@@ -71,12 +75,13 @@ const Portfolio = () => {
             >
               <p>Github repo</p>
             </a>
-            <a
+            <Link
+              onClick={scrollToTop}
               className="portfolio__portfolio-project-link"
-              href={`${aboutProjectUrl}`}
+              to={`${aboutProjectUrl}`}
             >
               <p>About project</p>
-            </a>
+            </Link>
           </div>
         )}
         {projectExists && (

@@ -1,16 +1,40 @@
 import "./App.css";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import Home from "./pages/Home";
+import AboutProject from "./pages/AboutProject";
 import SharedComponents from "./shared-components/SharedComponents";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
+  const [currentScrollLocation, setCurrentScrollLocation] = useState();
+  const [projectIndex, setProjectIndex] = useState(0);
+  console.log(currentScrollLocation);
+
   return (
     <BrowserRouter>
       <Fragment>
         <Routes>
-          <Route path="/portfolio-website" element={<SharedComponents />}>
-            <Route index element={<Home />} />
+          <Route
+            path="/portfolio-website"
+            element={
+              <SharedComponents
+                setCurrentScrollLocation={setCurrentScrollLocation}
+              />
+            }
+          >
+            <Route
+              index
+              element={
+                <Home
+                  currentScrollLocation={currentScrollLocation}
+                  setCurrentScrollLocation={setCurrentScrollLocation}
+                />
+              }
+            />
+            <Route
+              path={`/portfolio-website/about-project/${projectIndex}`}
+              element={<AboutProject />}
+            ></Route>
           </Route>
         </Routes>
       </Fragment>

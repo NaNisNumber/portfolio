@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./HeroSection.scss";
 import { motion } from "framer-motion";
+
 const HeroSection = () => {
   /* first animation starts, after it is finished a second animation will start in reverse with 
   the same number of steps, after the 'reverse' animation finishes the text content will change and the
@@ -8,6 +9,7 @@ const HeroSection = () => {
   1. When the text content will change?
   When the 'reverse' animation finishes.
   */
+
   const [headingCurrentContent, setHeadingCurrentContent] = useState("Hello");
   const typewriterBeforeRef = useRef();
   const typewriterAfterRef = useRef();

@@ -20,7 +20,7 @@ const About = () => {
           <motion.p
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            initial={{ opacity: 0, y: 200 }}
+            initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="portfolio__about-text"
           >
@@ -30,7 +30,7 @@ const About = () => {
           <motion.p
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            initial={{ opacity: 0, y: 200 }}
+            initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="portfolio__about-text"
           >
@@ -42,7 +42,7 @@ const About = () => {
           <motion.p
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            initial={{ opacity: 0, y: 200 }}
+            initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="portfolio__about-text"
           >
@@ -52,12 +52,12 @@ const About = () => {
           <motion.p
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            initial={{ opacity: 0, y: 200 }}
+            initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="portfolio__about-text"
           >
-            Instead of being a party person, one of my best friends is my PC and
-            my rescued kitten.
+            Instead of being a party person, I prefer places that are more
+            quiet.
           </motion.p>
           <motion.p
             viewport={{ once: true }}

@@ -1,39 +1,42 @@
 import React from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
 import { Link as RouterLink } from "react-router-dom";
 import "./Navbar.scss";
-const Navbar = () => {
+
+const Navbar = ({ setCurrentScrollLocation }) => {
   return (
     <nav className="portfolio__navbar">
       <ul className="portfolio__navbar-ul">
-        <Link
-          duration={500}
-          smooth={true}
-          activeClass="active-nav-link"
-          spy={true}
-          to="hero"
+        <RouterLink
+          onClick={() => {
+            setCurrentScrollLocation("hero");
+          }}
+          to={"/portfolio-website"}
         >
           <li className="portfolio__navbar-li">Home</li>
-        </Link>
-        <Link
-          duration={500}
-          smooth={true}
-          activeClass="active-nav-link"
-          spy={true}
-          to="about"
+        </RouterLink>
+
+        <RouterLink
+          onClick={() => {
+            setCurrentScrollLocation("about");
+          }}
+          to={"/portfolio-website"}
         >
           <li className="portfolio__navbar-li">About me</li>
-        </Link>
-        <Link
-          duration={500}
-          smooth={true}
-          activeClass="active-nav-link"
-          spy={true}
-          to="portfolio"
+        </RouterLink>
+        <RouterLink
+          onClick={() => {
+            setCurrentScrollLocation("portfolio");
+          }}
+          to={"/portfolio-website"}
         >
           <li className="portfolio__navbar-li">My projects</li>
-        </Link>
-        <RouterLink>
+        </RouterLink>
+        <RouterLink
+          onClick={() => {
+            setCurrentScrollLocation("contact");
+          }}
+          to={"/portfolio-website"}
+        >
           <li className="portfolio__navbar-li">Contact</li>
         </RouterLink>
       </ul>

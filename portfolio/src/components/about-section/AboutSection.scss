@@ -37,7 +37,7 @@
   text-shadow: 1px 1px 0 rgb(181, 228, 228);
   mix-blend-mode: screen;
   @include mixins.respond-to(large) {
-    font-size: 1.8rem;
-    line-height: 1.8;
+    font-size: 1.6rem;
+    line-height: 1.6;
   }
 }
