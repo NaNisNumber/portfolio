@@ -8,6 +8,11 @@
   border-top: 2px solid #fff;
   background-color: rgb(38, 42, 60);
 }
+.portfolio__navbar-ul a:link,
+.portfolio__navbar-ul a:visited {
+  text-decoration: none;
+}
+
 .portfolio__navbar-ul {
   display: flex;
   justify-content: space-around;

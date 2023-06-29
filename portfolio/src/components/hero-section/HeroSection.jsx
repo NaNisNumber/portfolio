@@ -14,6 +14,7 @@ const HeroSection = () => {
   const typewriterBeforeRef = useRef();
   const typewriterAfterRef = useRef();
   const heroHeadingRef = useRef();
+  const typewriterContainerRef = useRef();
   const heroHeadingContent = [
     "Hello",
     "My name is Sergiu",
@@ -23,6 +24,8 @@ const HeroSection = () => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    typewriterContainerRef.current.style.width = `${headingCurrentContent.length}ch`;
+
     const numberOfAnimationSteps = headingCurrentContent.length;
 
     document.documentElement.style.setProperty(
@@ -30,7 +33,8 @@ const HeroSection = () => {
       `steps(${numberOfAnimationSteps})`
     );
 
-    heroHeadingRef.current.style = "opacity:1";
+    heroHeadingRef.current.style.opacity = `1`;
+
     typewriterBeforeRef.current.classList.add(
       "portfolio__hero-typewriter-before--initial-animation"
     );
@@ -74,7 +78,7 @@ const HeroSection = () => {
       );
       setIndex((prevIndex) => prevIndex + 1);
 
-      heroHeadingRef.current.style = "opacity:0";
+      heroHeadingRef.current.style.opacity = "0";
       setHeadingCurrentContent(heroHeadingContent[index + 1]);
     }, 6000);
   }, [headingCurrentContent]);
@@ -83,7 +87,10 @@ const HeroSection = () => {
     <section id="hero" className="portfolio__hero-section">
       <div className="portfolio__hero-header-container">
         <header className="portfolio__hero-header">
-          <div className="portfolio__hero-header-inner-container">
+          <div
+            ref={typewriterContainerRef}
+            className="portfolio__hero-header-inner-container"
+          >
             <div
               ref={typewriterBeforeRef}
               className="portfolio__hero-typewriter-before"
@@ -96,7 +103,6 @@ const HeroSection = () => {
               className="portfolio__hero-typewriter-after"
             ></div>
           </div>
-
           {index === heroHeadingContent.length - 1 && (
             <motion.h2
               transition={{ type: "spring", stiffness: 60, delay: 4 }}
@@ -111,17 +117,6 @@ const HeroSection = () => {
             </motion.h2>
           )}
         </header>
-      </div>
-      <div className="portfolio__hero-giph-container">
-        <iframe
-          src="https://giphy.com/embed/l3nWay9wKNdq6WTxm"
-          width="100%"
-          height="100%"
-          style={{ position: "absolute" }}
-          frameBorder="0"
-          className="giphy-embed"
-          allowFullScreen
-        ></iframe>
       </div>
     </section>
   );

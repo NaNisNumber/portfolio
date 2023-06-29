@@ -8,7 +8,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   const [currentScrollLocation, setCurrentScrollLocation] = useState();
   const [projectIndex, setProjectIndex] = useState(0);
-  console.log(currentScrollLocation);
 
   return (
     <BrowserRouter>

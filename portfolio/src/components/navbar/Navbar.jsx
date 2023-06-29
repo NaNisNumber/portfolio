@@ -7,6 +7,7 @@ const Navbar = ({ setCurrentScrollLocation }) => {
     <nav className="portfolio__navbar">
       <ul className="portfolio__navbar-ul">
         <RouterLink
+          className="test"
           onClick={() => {
             setCurrentScrollLocation("hero");
           }}
