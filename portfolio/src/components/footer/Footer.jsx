@@ -8,7 +8,7 @@ const Footer = () => {
     e.preventDefault();
 
     Email.send({
-      SecureToken: "74b10559-b105-4844-95e1-60115b8f3389",
+      SecureToken: "d010849c-9ae0-462d-9e46-ee5248318fee",
       From: `${emailFrom}`,
       To: "grigoroscuta.sergiu@yahoo.com",
       Subject: "This is the subject",

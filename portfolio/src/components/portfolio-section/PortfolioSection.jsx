@@ -28,7 +28,7 @@ const Portfolio = () => {
       name: "Retro Games Website",
       livePreviewUrl: "https://nanisnumber.github.io/Retro-games-website_P/",
       repoUrl: "https://github.com/NaNisNumber/Retro-games-website_P",
-      aboutProjectUrl: "/portfolio-website/about-project/0",
+      aboutProjectUrl: "/about-project/0",
       position: "right",
     },
     {

@@ -7,11 +7,10 @@ const Navbar = ({ setCurrentScrollLocation }) => {
     <nav className="portfolio__navbar">
       <ul className="portfolio__navbar-ul">
         <RouterLink
-          className="test"
           onClick={() => {
             setCurrentScrollLocation("hero");
           }}
-          to={"/portfolio-website"}
+          to={"/"}
         >
           <li className="portfolio__navbar-li">Home</li>
         </RouterLink>
@@ -20,7 +19,7 @@ const Navbar = ({ setCurrentScrollLocation }) => {
           onClick={() => {
             setCurrentScrollLocation("about");
           }}
-          to={"/portfolio-website"}
+          to={"/"}
         >
           <li className="portfolio__navbar-li">About me</li>
         </RouterLink>
@@ -28,7 +27,7 @@ const Navbar = ({ setCurrentScrollLocation }) => {
           onClick={() => {
             setCurrentScrollLocation("portfolio");
           }}
-          to={"/portfolio-website"}
+          to={"/"}
         >
           <li className="portfolio__navbar-li">My projects</li>
         </RouterLink>
@@ -36,7 +35,7 @@ const Navbar = ({ setCurrentScrollLocation }) => {
           onClick={() => {
             setCurrentScrollLocation("contact");
           }}
-          to={"/portfolio-website"}
+          to={"/"}
         >
           <li className="portfolio__navbar-li">Contact</li>
         </RouterLink>

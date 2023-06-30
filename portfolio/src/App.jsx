@@ -14,7 +14,7 @@ function App() {
       <Fragment>
         <Routes>
           <Route
-            path="/portfolio-website"
+            path="/"
             element={
               <SharedComponents
                 setCurrentScrollLocation={setCurrentScrollLocation}
@@ -31,7 +31,7 @@ function App() {
               }
             />
             <Route
-              path={`/portfolio-website/about-project/${projectIndex}`}
+              path={`/about-project/${projectIndex}`}
               element={<AboutProject />}
             ></Route>
           </Route>
