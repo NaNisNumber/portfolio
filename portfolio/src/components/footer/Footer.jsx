@@ -1,19 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import "./Footer.scss";
 
 const Footer = () => {
   const [emailFrom, setEmailFrom] = useState("");
+  const form = useRef();
 
   function sendEmail(e) {
     e.preventDefault();
-
-    Email.send({
-      SecureToken: "d010849c-9ae0-462d-9e46-ee5248318fee",
-      From: `${emailFrom}`,
-      To: "grigoroscuta.sergiu@yahoo.com",
-      Subject: "This is the subject",
-      Body: "And this is the body",
-    }).then((message) => alert(message));
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_REACT_YOUR_SERVICE_ID,
+        import.meta.env.VITE_REACT_YOUR_TEMPLATE_ID,
+        form.current,
+        import.meta.env.VITE_REACT_YOUR_PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          console.log(result);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   }
 
   return (
@@ -22,6 +31,7 @@ const Footer = () => {
         <div className="portfolio__footer-contact">
           <p className="portfolio__footer-contact-text">Let's Get In Touch</p>
           <form
+            ref={form}
             id="contact-form"
             onSubmit={(e) => {
               sendEmail(e);
@@ -31,9 +41,11 @@ const Footer = () => {
             <input
               className="portfolio__footer-input"
               type="text"
+              name="user_name"
               placeholder="Name"
             />
             <input
+              name="user_email"
               placeholder="Email"
               type="email"
               onChange={(e) => {
@@ -42,6 +54,7 @@ const Footer = () => {
               className="portfolio__footer-input"
             />
             <textarea
+              name="message"
               style={{ resize: "none" }}
               rows="10"
               placeholder="Message"
@@ -50,6 +63,7 @@ const Footer = () => {
             />
           </form>
           <button
+            value={"Send"}
             form="contact-form"
             className="portfolio__footer-submit-btn"
             type="submit"

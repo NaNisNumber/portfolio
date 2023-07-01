@@ -5,7 +5,7 @@
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: rgb(38, 42, 60);
+  background-color: #c7682b;
 }
 .portfolio__navbar-ul a:link,
 .portfolio__navbar-ul a:visited {
@@ -14,7 +14,7 @@
 
 .portfolio__navbar-ul {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 0 auto;
   flex-wrap: wrap;
   @include mixins.respond-to(large) {
@@ -31,8 +31,6 @@
   cursor: pointer;
 }
 .portfolio__navbar-li:hover {
-  background-color: #c7682b;
-}
-.active-nav-link {
-  background-color: #c7682b;
+  background-color: #fff;
+  color: #040b3f;
 }

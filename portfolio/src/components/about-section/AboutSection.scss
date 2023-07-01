@@ -1,6 +1,6 @@
 @use "../../mixins/mixins.scss" as mixins;
 .portfolio__about-section {
-  background-color: teal;
+  background-color: rgb(176, 176, 176);
   padding: 3.6rem 1.8rem;
   @include mixins.respond-to(medium-small) {
     padding: 4.8rem 2.4rem;

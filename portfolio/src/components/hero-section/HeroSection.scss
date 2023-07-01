@@ -5,15 +5,17 @@
 }
 
 .portfolio__hero-section {
-  background-image: url("../../images/heroImg.jpg");
+  background-image: linear-gradient(rgba(4, 11, 63), rgba(4, 11, 63, 0.3)),
+    url("../../images/heroImg.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: top;
+
   padding: 1.8rem 0;
-  background-color: black;
   height: 100vh;
   position: relative;
   z-index: 1;
   overflow: hidden;
+
   @include mixins.respond-to(medium) {
     padding: 2.4rem;
   }
@@ -36,6 +38,7 @@
 .portfolio__hero-header-inner-container {
   position: relative;
   font-size: 1.2rem;
+
   @include mixins.respond-to(medium) {
     background-position: center;
     font-size: 1.6rem;
@@ -50,7 +53,6 @@
 .portfolio__hero-heading--secondary {
   overflow: hidden;
   font-size: 1.2rem;
-
   color: teal;
   line-height: 1.4;
 
@@ -78,13 +80,13 @@
 .portfolio__hero-typewriter-before--initial-animation {
   animation: typewriter var(--typewriterSpeed) 1s var(--typewriterSteps)
     forwards;
-  background-color: #151515;
+  background-color: #040b3f;
 }
 .portfolio__hero-typewriter-before--reverse-animation {
   left: 100%;
   animation: typewriterReverse var(--typewriterSpeed) var(--typewriterSteps)
     forwards;
-  background-color: #151515;
+  background-color: #040b3f;
 }
 .portfolio__hero-typewriter-after--initial-animation {
   background-color: teal;
