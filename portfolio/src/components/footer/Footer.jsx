@@ -1,13 +1,39 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
 import "./Footer.scss";
 
 const Footer = () => {
-  const [emailFrom, setEmailFrom] = useState("");
-  const form = useRef();
+  const [formUserName, setFormUserName] = useState("");
+  const [formUserEmail, setFormUserEmail] = useState("");
+  const [formUserMessage, setFormUserMessage] = useState("");
+  const [messageWasSent, setMessageWasSent] = useState("");
+  const [formStatusCode, setFormStatusCode] = useState();
+  const form = useRef(null);
+  const messageWasSentRef = useRef(null);
+
+  function resetForm() {
+    setFormUserName("");
+    setFormUserEmail("");
+    setFormUserMessage("");
+  }
+
+  function formValidation() {
+    let isValid = false;
+    if (formUserEmail == "" || formUserName == "" || formUserMessage == "") {
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+    return isValid;
+  }
 
   function sendEmail(e) {
     e.preventDefault();
+
+    const formIsValid = formValidation();
+    if (!formIsValid) return;
+
     emailjs
       .sendForm(
         import.meta.env.VITE_REACT_YOUR_SERVICE_ID,
@@ -17,18 +43,54 @@ const Footer = () => {
       )
       .then(
         (result) => {
-          console.log(result);
+          if (result.status === 200) {
+            resetForm();
+            setMessageWasSent("Your message was sent with success !");
+            setFormStatusCode(200);
+          }
         },
         (error) => {
-          console.log(error.text);
+          setMessageWasSent(
+            `Something happened, your message couldn't be sent:error ${error.status}`
+          );
         }
       );
   }
+
+  useEffect(() => {
+    if (formStatusCode === null) return;
+    if (formStatusCode == 200) {
+      messageWasSentRef.current.classList.add(
+        "portfolio__footer-contact-message-sent-text--toggle"
+      );
+    }
+
+    messageWasSentRef.current.addEventListener(
+      "animationend",
+      function onAnimationEnd() {
+        messageWasSentRef.current.removeEventListener(
+          "animationend",
+          onAnimationEnd
+        );
+        messageWasSentRef.current.classList.remove(
+          "portfolio__footer-contact-message-sent-text--toggle"
+        );
+      }
+    );
+    setFormStatusCode(null);
+  }, [formStatusCode]);
 
   return (
     <footer id="contact" className="portfolio__footer">
       <div className="portfolio__footer-container">
         <div className="portfolio__footer-contact">
+          <p
+            ref={messageWasSentRef}
+            className="portfolio__footer-contact-message-sent-text"
+          >
+            {messageWasSent}
+          </p>
+
           <p className="portfolio__footer-contact-text">Let's Get In Touch</p>
           <form
             ref={form}
@@ -39,21 +101,33 @@ const Footer = () => {
             className="portfolio__footer-form"
           >
             <input
+              onChange={(e) => {
+                const value = e.target.value;
+                setFormUserName(value);
+              }}
+              value={formUserName}
               className="portfolio__footer-input"
               type="text"
               name="user_name"
               placeholder="Name"
             />
             <input
+              value={formUserEmail}
               name="user_email"
               placeholder="Email"
               type="email"
               onChange={(e) => {
-                setEmailFrom(e.target.value);
+                const value = e.target.value;
+                setFormUserEmail(value);
               }}
               className="portfolio__footer-input"
             />
             <textarea
+              value={formUserMessage}
+              onChange={(e) => {
+                const value = e.target.value;
+                setFormUserMessage(value);
+              }}
               name="message"
               style={{ resize: "none" }}
               rows="10"
