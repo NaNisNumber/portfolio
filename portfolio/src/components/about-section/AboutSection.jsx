@@ -1,6 +1,19 @@
 import React from "react";
 import "./AboutSection.scss";
+import htmlLogo from "../../images/html.svg";
+import cssLogo from "../../images/css-3.svg";
+import scssLogo from "../../images/sass.svg";
+import jsLogo from "../../images/js.svg";
+import reactLogo from "../../images/react.svg";
+import firebaseLogo from "../../images/firebase-icon.svg";
+import gitLogo from "../../images/git.svg";
+import githubLogo from "../../images/github.svg";
+import nodeLogo from "../../images/nodejs.svg";
+import mongodbLogo from "../../images/mongodb.svg";
+import materialUiLogo from "../../images/materialUi.svg";
+
 import { motion } from "framer-motion";
+
 const About = () => {
   return (
     <section id="about" className="portfolio__about-section">
@@ -16,17 +29,132 @@ const About = () => {
             Some things about me
           </motion.h1>
         </header>
-        <div className="portfolio__about-text-container">
+
+        <div className="portfolio__about-skills-container">
           <motion.p
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="portfolio__about-text"
+            className="portfolio__about-text portfolio__about-text--name"
           >
             My name is Sergiu. I'm 21 years old and I'm a self-taught front-end
             web developer.
           </motion.p>
+          <div className="portfolio__about-skills-inner-container">
+            <div className="portfolio__about-skills-inner-inner-container">
+              <motion.p
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="portfolio__about-text"
+              >
+                My current skills are:
+              </motion.p>
+              <ul className="portfolio__about-skills-ul">
+                <li>
+                  <span>HTML</span> <img alt="html logo" src={htmlLogo} />
+                </li>
+                <li>
+                  <span>CSS</span> <img alt="css logo" src={cssLogo} />
+                </li>
+                <li>
+                  <span> SCSS</span> <img alt="scss logo" src={scssLogo} />
+                </li>
+                <li>
+                  <span>JAVASCRIPT </span> <img alt="js logo" src={jsLogo} />
+                </li>
+                <li>
+                  <span> REACT</span> <img alt="react logo" src={reactLogo} />
+                </li>
+                <li>
+                  <span> FIREBASE</span>{" "}
+                  <img alt="html logo" src={firebaseLogo} />
+                </li>
+                <li>
+                  <span> GIT</span> <img alt="git logo" src={gitLogo} />
+                </li>
+                <li>
+                  <span> GITHUB</span>{" "}
+                  <img alt="github logo" src={githubLogo} />
+                </li>
+              </ul>
+            </div>
+            <div className="portfolio__about-skills-icons-container">
+              <div className="portfolio__about-skills-icons-inner-container">
+                <img
+                  className="portfolio__about-skills-icons-icon portfolio__about-skills-icons-icon--bottom"
+                  alt="html logo"
+                  src={htmlLogo}
+                />
+                <img
+                  className="portfolio__about-skills-icons-icon "
+                  alt="html logo"
+                  src={cssLogo}
+                />
+                <img
+                  className="portfolio__about-skills-icons-icon portfolio__about-skills-icons-icon--bottom"
+                  alt="html logo"
+                  src={scssLogo}
+                />
+                <img
+                  className="portfolio__about-skills-icons-icon "
+                  alt="html logo"
+                  src={jsLogo}
+                />
+                <img
+                  className="portfolio__about-skills-icons-icon portfolio__about-skills-icons-icon--bottom"
+                  alt="html logo"
+                  src={reactLogo}
+                />
+                <img
+                  className="portfolio__about-skills-icons-icon "
+                  alt="html logo"
+                  src={firebaseLogo}
+                />
+                <img
+                  className="portfolio__about-skills-icons-icon portfolio__about-skills-icons-icon--bottom"
+                  alt="html logo"
+                  src={gitLogo}
+                />
+                <img
+                  className="portfolio__about-skills-icons-icon "
+                  alt="html logo"
+                  src={githubLogo}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="portfolio__about-skills-inner-container">
+            <div className="portfolio__about-skills-inner-inner-container">
+              <motion.p
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="portfolio__about-text"
+              >
+                Currently I'm learning:
+              </motion.p>
+              <ul class="portfolio__about-skills-ul">
+                <li>
+                  <span> NODE.JS</span> <img alt="nodejs logo" src={nodeLogo} />
+                </li>
+                <li>
+                  <span> MONGODB</span>
+                  <img alt="mongodb logo" src={mongodbLogo} />
+                </li>
+                <li>
+                  <span> MATERIAL UI</span>
+                  <img alt="material ui logo" src={materialUiLogo} />
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="portfolio__about-text-container">
           <motion.p
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}

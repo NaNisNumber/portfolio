@@ -1,5 +1,6 @@
 @use "../../mixins/mixins.scss" as mixins;
 .portfolio__about-section {
+  min-height: 100vh;
   background-color: rgb(176, 176, 176);
   padding: 3.6rem 1.8rem;
   @include mixins.respond-to(medium-small) {
@@ -7,14 +8,7 @@
   }
   overflow-y: hidden;
 }
-.portfolio__about-container {
-  @include mixins.respond-to(medium-small) {
-    width: 85%;
-  }
-  @include mixins.respond-to(large) {
-    width: 65%;
-  }
-}
+
 .portfolio__about-header {
   margin-bottom: 2.4rem;
 }
@@ -27,6 +21,15 @@
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+  padding: 1.6rem;
+  margin: 0 auto;
+  @include mixins.respond-to(medium-small) {
+    width: 85%;
+  }
+  @include mixins.respond-to(large) {
+    width: 65%;
+    padding: 2.4rem;
+  }
 }
 .portfolio__about-text {
   color: #084f52;
@@ -39,4 +42,83 @@
     font-size: 1.6rem;
     line-height: 1.6;
   }
+}
+.portfolio__about-text--name {
+  color: #c7682b;
+  text-align: center;
+  margin-bottom: 1.6rem;
+}
+.portfolio__about-skills-container {
+  display: grid;
+  gap: 1.6rem;
+  border-radius: 6px;
+  padding: 1.6rem;
+  margin-bottom: 2.4rem;
+  background-color: #040b3f;
+  @include mixins.respond-to(large) {
+    padding: 2.4rem;
+  }
+}
+.portfolio__about-skills-inner-container {
+  display: grid;
+  align-items: center;
+
+  @include mixins.respond-to(large) {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+.portfolio__about-skills-icons-container {
+  justify-self: center;
+  display: none;
+  @include mixins.respond-to(large) {
+    display: block;
+  }
+  @include mixins.respond-to(extra-large) {
+    width: 70%;
+    justify-self: flex-start;
+  }
+}
+
+.portfolio__about-skills-icons-inner-container {
+  height: 150px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+.portfolio__about-skills-icons-icon {
+  @include mixins.respond-to(large) {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+  @include mixins.respond-to(extra-large) {
+    width: 3.6rem;
+    height: 3.6rem;
+  }
+}
+.portfolio__about-skills-icons-icon--bottom {
+  align-self: flex-end;
+}
+
+.portfolio__about-skills-inner-container .portfolio__about-text {
+  margin-bottom: 1rem;
+}
+.portfolio__about-skills-ul {
+  color: #c7682b;
+  margin-left: 1rem;
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.portfolio__about-skills-ul li {
+  display: flex;
+  align-items: center;
+  width: auto;
+  justify-content: space-between;
+  @include mixins.respond-to(medium-small) {
+    width: 15rem;
+  }
+}
+.portfolio__about-skills-ul li img {
+  width: 1.6rem;
+  height: 1.6rem;
 }

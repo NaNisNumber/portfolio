@@ -1,9 +1,9 @@
 import React from "react";
 import "./AboutProjectSection.scss";
 import retroImage from "../../images/retroImage.png";
-import htmlLogo from "../../images/html.png";
-import cssLogo from "../../images/css-3.png";
-import reactLogo from "../../images/react.png";
+import htmlLogo from "../../images/html.svg";
+import cssLogo from "../../images/css-3.svg";
+import reactLogo from "../../images/react.svg";
 import firebaseLogo from "../../images/firebase-icon.svg";
 const AboutProjectSection = () => {
   return (
