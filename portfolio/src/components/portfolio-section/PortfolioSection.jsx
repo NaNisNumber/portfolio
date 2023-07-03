@@ -1,10 +1,11 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useRef } from "react";
 import "./PortfolioSection.scss";
 import { Link } from "react-router-dom";
 import { animateScroll } from "react-scroll";
 
 const Portfolio = () => {
   const scrollToTop = animateScroll.scrollToTop;
+  const reverseSphereRef = useRef();
 
   const projectsData = [
     {
@@ -99,12 +100,12 @@ const Portfolio = () => {
     const mediaQuery = "(max-width: 900px)";
     const mediaIsMatching = window.matchMedia(mediaQuery).matches;
     let target = e.target;
+    let restOfProjects = [];
     const projectContainers = document.querySelectorAll(
       ".portfolio__portfolio-project-container"
     );
 
     let delay = 0;
-    let isRevealed = false;
 
     if (target.dataset.mark == "question") {
       target = target.parentElement;
@@ -115,13 +116,6 @@ const Portfolio = () => {
       const container = projectContainers[i];
       const position = container.dataset.position;
       const questionMark = container.lastChild;
-      /* prevent revealing two projects at the same time by checking if the expand class is already present
-      on one of the containers */
-      if (container.classList.contains("expand")) {
-        isRevealed = true;
-      } else if (container.classList.contains("expand-mb")) {
-        isRevealed = true;
-      }
 
       container.classList.remove(
         `portfolio__portfolio-project-container--${position}-pull-reverse`,
@@ -129,6 +123,16 @@ const Portfolio = () => {
       );
 
       if (container === target) continue;
+
+      // add the rest of project containers that are not the target to the array;
+      restOfProjects.push(container);
+      //
+
+      // if target is clicked, make the other project bubbles unclickable and also the sphere
+      container.style.pointerEvents = "none";
+      reverseSphereRef.current.style.pointerEvents = "none";
+      //
+
       /* when the user click to reveal a project hide all the question marks from the other projects that are
       not the targeted one to prevent stacking of the question marks inside the sphere */
       if (questionMark) {
@@ -154,7 +158,7 @@ const Portfolio = () => {
       })(delay);
     }
 
-    if (target.dataset.container && !isRevealed) {
+    if (target.dataset.container) {
       if (mediaIsMatching) {
         target.classList.add("expand-mb");
       } else {
@@ -163,7 +167,15 @@ const Portfolio = () => {
     }
 
     target.addEventListener("animationend", function onAnimationEnd() {
+      // after the animation on the target project bubble ends, bring back
+      // the functionality of the other bubbles and the sphere
       target.removeEventListener("animationend", onAnimationEnd);
+      restOfProjects.forEach((project) => {
+        project.style.pointerEvents = "auto";
+        reverseSphereRef.current.style.pointerEvents = "auto";
+      });
+      //
+
       if (!target.firstChild) return;
       targetQuestionMark.classList.add(
         "portfolio__portfolio-project-question-mark-hidden"
@@ -250,6 +262,7 @@ const Portfolio = () => {
         </header>
         <div className="portfolio__portfolio-container">
           <div
+            ref={reverseSphereRef}
             onClick={() => {
               reverseRevealHandler();
             }}
