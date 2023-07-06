@@ -138,7 +138,7 @@ const About = () => {
               >
                 Currently I'm learning:
               </motion.p>
-              <ul class="portfolio__about-skills-ul">
+              <ul className="portfolio__about-skills-ul">
                 <li>
                   <span> NODE.JS</span> <img alt="nodejs logo" src={nodeLogo} />
                 </li>

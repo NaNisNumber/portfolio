@@ -55,6 +55,7 @@ const Portfolio = () => {
 
     return (
       <div
+        key={position}
         onClick={(e) => {
           revealProjectHandler(e);
         }}
