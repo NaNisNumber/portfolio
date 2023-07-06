@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./AboutSection.scss";
 import htmlLogo from "../../images/html.svg";
 import cssLogo from "../../images/css-3.svg";
@@ -11,10 +11,42 @@ import githubLogo from "../../images/github.svg";
 import nodeLogo from "../../images/nodejs.svg";
 import mongodbLogo from "../../images/mongodb.svg";
 import materialUiLogo from "../../images/materialUi.svg";
-
 import { motion } from "framer-motion";
 
 const About = () => {
+  const skillsIconsContainerRef = useRef();
+
+  useEffect(() => {
+    let delay = 0;
+    const icons = document.querySelectorAll(
+      ".portfolio__about-skills-icons-icon"
+    );
+
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 1,
+    };
+
+    function whenInView(entries) {
+      const entriesObj = entries[0];
+      const targetedElement = entriesObj.target;
+      const isIntersecting = entries[0].isIntersecting;
+      if (!isIntersecting) return;
+
+      icons.forEach((icon, i) => {
+        delay = delay + 0.4;
+        if (i === 0) delay = 0;
+        icon.style.animation = `scaleSkillIcon 0.4s ${delay}s forwards`;
+      });
+
+      observer.unobserve(targetedElement);
+    }
+
+    const observer = new IntersectionObserver(whenInView, options);
+    observer.observe(skillsIconsContainerRef.current);
+  }, []);
+
   return (
     <section id="about" className="portfolio__about-section">
       <div className="portfolio__about-container">
@@ -81,7 +113,10 @@ const About = () => {
                 </li>
               </ul>
             </div>
-            <div className="portfolio__about-skills-icons-container">
+            <div
+              ref={skillsIconsContainerRef}
+              className="portfolio__about-skills-icons-container"
+            >
               <div className="portfolio__about-skills-icons-inner-container">
                 <img
                   className="portfolio__about-skills-icons-icon portfolio__about-skills-icons-icon--bottom"

@@ -1,4 +1,5 @@
 @use "../../mixins/mixins.scss" as mixins;
+
 .portfolio__about-section {
   min-height: 100vh;
   background-color: rgb(176, 176, 176);
@@ -80,9 +81,13 @@
 }
 
 .portfolio__about-skills-icons-inner-container {
-  height: 150px;
+  height: 100px;
   display: grid;
+  justify-items: center;
   grid-template-columns: repeat(8, 1fr);
+  @include mixins.respond-to(extra-large) {
+    height: 150px;
+  }
 }
 .portfolio__about-skills-icons-icon {
   @include mixins.respond-to(large) {
@@ -121,4 +126,15 @@
 .portfolio__about-skills-ul li img {
   width: 1.6rem;
   height: 1.6rem;
+}
+
+// scaleSkillIcon animation
+
+@keyframes scaleSkillIcon {
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
