@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import "./PortfolioSection.scss";
 import { Link } from "react-router-dom";
 import { animateScroll } from "react-scroll";
@@ -6,6 +6,9 @@ import { animateScroll } from "react-scroll";
 const Portfolio = () => {
   const scrollToTop = animateScroll.scrollToTop;
   const reverseSphereRef = useRef();
+  const [bubbleActive, setBubbleActive] = useState(false);
+  const [sphereActive, setSphereActive] = useState(false);
+  const [floatIntervalIds, setFloatIntervalIds] = useState({});
 
   const projectsData = [
     {
@@ -55,7 +58,7 @@ const Portfolio = () => {
         onClick={(e) => {
           revealProjectHandler(e);
         }}
-        className={`portfolio__portfolio-project-container portfolio__portfolio-project-container--${position} portfolio__portfolio-project-container--${position}-float`}
+        className={`portfolio__portfolio-project-container portfolio__portfolio-project-container--${position} `}
         data-position={position}
         data-container="project"
       >
@@ -96,7 +99,54 @@ const Portfolio = () => {
     );
   });
 
+  useEffect(() => {
+    function floatAnimation(delay) {
+      const projectContainers = document.querySelectorAll(
+        ".portfolio__portfolio-project-container"
+      );
+
+      const floatTimeout = setInterval(() => {
+        for (let i = 0; i < projectContainers.length; i++) {
+          const container = projectContainers[i];
+          container.classList.remove("remove-transition");
+          const position = container.dataset.position;
+          container.classList.add(
+            `portfolio__portfolio-project-container--${position}-float`
+          );
+        }
+      }, 3000);
+
+      const floatTimeoutRemoveFloat = setInterval(() => {
+        for (let i = 0; i < projectContainers.length; i++) {
+          const container = projectContainers[i];
+          const position = container.dataset.position;
+          container.classList.remove(
+            `portfolio__portfolio-project-container--${position}-float`
+          );
+        }
+      }, 6100);
+
+      return {
+        floatTimeout: floatTimeout,
+        floatTimeoutRemoveFloat: floatTimeoutRemoveFloat,
+      };
+    }
+
+    const intervals = (!bubbleActive || sphereActive) && floatAnimation();
+
+    setFloatIntervalIds(intervals);
+  }, [bubbleActive, sphereActive]);
+
+  useEffect(() => {
+    if (bubbleActive || sphereActive) {
+      clearInterval(floatIntervalIds.floatTimeout);
+      clearInterval(floatIntervalIds.floatTimeoutRemoveFloat);
+    }
+  }, [bubbleActive, sphereActive]);
+
   const revealProjectHandler = function (e) {
+    setSphereActive(false);
+    setBubbleActive(true);
     const mediaQuery = "(max-width: 900px)";
     const mediaIsMatching = window.matchMedia(mediaQuery).matches;
     let target = e.target;
@@ -119,7 +169,8 @@ const Portfolio = () => {
 
       container.classList.remove(
         `portfolio__portfolio-project-container--${position}-pull-reverse`,
-        `portfolio__portfolio-project-container--${position}-pull-reverse-mb`
+        `portfolio__portfolio-project-container--${position}-pull-reverse-mb`,
+        `portfolio__portfolio-project-container--${position}-float`
       );
 
       if (container === target) continue;
@@ -187,6 +238,10 @@ const Portfolio = () => {
   };
 
   const reverseRevealHandler = function () {
+    if (!bubbleActive) return;
+    setSphereActive(true);
+    setBubbleActive(false);
+
     const mediaQuery = "(max-width: 900px)";
     const mediaIsMatching = window.matchMedia(mediaQuery).matches;
     const projectContainers = document.querySelectorAll(
@@ -194,9 +249,10 @@ const Portfolio = () => {
     );
 
     projectContainers.forEach((container) => {
+      container.style.pointerEvents = "none";
       const position = container.dataset.position;
       const questionMark = container.lastChild;
-
+      container.classList.add("remove-transition");
       if (questionMark) {
         questionMark.classList.add(
           "portfolio__portfolio-project-question-mark-hidden"
@@ -205,12 +261,21 @@ const Portfolio = () => {
 
       container.addEventListener("animationend", function onAnimationEnd() {
         container.removeEventListener("animationend", onAnimationEnd);
+        container.style.pointerEvents = "auto";
         if (questionMark) {
           questionMark.classList.remove(
             "portfolio__portfolio-project-question-mark-hidden"
           );
         }
       });
+
+      container.classList.remove(
+        `portfolio__portfolio-project-container--${position}-pull`,
+        `portfolio__portfolio-project-container--${position}-pull-mb`,
+        `portfolio__portfolio-project-container--${position}-float`,
+        "expand",
+        "expand-mb"
+      );
 
       if (mediaIsMatching) {
         container.classList.add(
@@ -221,14 +286,6 @@ const Portfolio = () => {
           `portfolio__portfolio-project-container--${position}-pull-reverse`
         );
       }
-
-      container.classList.remove(
-        `portfolio__portfolio-project-container--${position}-pull`,
-        `portfolio__portfolio-project-container--${position}-pull-mb`,
-        `portfolio__portfolio-project-container--${position}-float`,
-        "expand",
-        "expand-mb"
-      );
 
       if (container.firstChild) {
         container.firstChild.classList.remove(
@@ -244,9 +301,6 @@ const Portfolio = () => {
             container.classList.remove(
               `portfolio__portfolio-project-container--${position}-pull-reverse`,
               `portfolio__portfolio-project-container--${position}-pull-reverse-mb`
-            );
-            container.classList.add(
-              `portfolio__portfolio-project-container--${position}-float`
             );
           });
         });
