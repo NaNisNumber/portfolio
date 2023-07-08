@@ -1,0 +1,12 @@
+.portfolio__circular-progress-overlay-container {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  z-index: 9999;
+  background-color: #fff;
+}
+.portfolio__circular-progress-overlay {
+  margin: 0 auto;
+}
