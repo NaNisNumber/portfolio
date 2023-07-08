@@ -3,7 +3,11 @@ import HeroSection from "../components/hero-section/HeroSection";
 import About from "../components/about-section/AboutSection";
 import Portfolio from "../components/portfolio-section/PortfolioSection";
 
-const Home = ({ currentScrollLocation, setCurrentScrollLocation }) => {
+const Home = ({
+  currentScrollLocation,
+  setCurrentScrollLocation,
+  setDisplayImg,
+}) => {
   useEffect(() => {
     if (!currentScrollLocation) return;
     const section = document.getElementById(`${currentScrollLocation}`);
@@ -17,7 +21,7 @@ const Home = ({ currentScrollLocation, setCurrentScrollLocation }) => {
 
   return (
     <Fragment>
-      <HeroSection />
+      <HeroSection setDisplayImg={setDisplayImg} />
       <About />
       <Portfolio />
     </Fragment>

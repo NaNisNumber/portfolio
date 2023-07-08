@@ -1,6 +1,6 @@
 @use "../../mixins/mixins.scss" as mixins;
 .portfolio__navbar {
-  z-index: 9999;
+  z-index: 1000;
   position: fixed;
   bottom: 0;
   right: 0;

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "./HeroSection.scss";
 import { motion } from "framer-motion";
 
-const HeroSection = () => {
+const HeroSection = ({ setDisplayImg }) => {
   /* first animation starts, after it is finished a second animation will start in reverse with 
   the same number of steps, after the 'reverse' animation finishes the text content will change and the
   first number of steps will also change, and the first animation will start again and so on 
@@ -11,10 +11,11 @@ const HeroSection = () => {
   */
 
   const [headingCurrentContent, setHeadingCurrentContent] = useState("Hello");
-  const typewriterBeforeRef = useRef();
-  const typewriterAfterRef = useRef();
-  const heroHeadingRef = useRef();
-  const typewriterContainerRef = useRef();
+  const typewriterBeforeRef = useRef(null);
+  const typewriterAfterRef = useRef(null);
+  const heroHeadingRef = useRef(null);
+  const typewriterContainerRef = useRef(null);
+  const heroSectionRef = useRef(null);
   const heroHeadingContent = [
     "Hello",
     "My name is Sergiu",
@@ -22,6 +23,32 @@ const HeroSection = () => {
   ];
 
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    function checkWhenHeroImgLoads() {
+      const bodyEl = document.getElementById("body");
+      const heroImg = new Image();
+      bodyEl.style.overflow = "hidden";
+      let heroImgLoaded = false;
+
+      heroImg.onload = function () {
+        heroSectionRef.current.style.backgroundImage =
+          "linear-gradient(rgba(4, 11, 63), rgba(4, 11, 63, 0.3)),url(" +
+          heroImg.src +
+          ")";
+        heroImgLoaded = true;
+      };
+      heroImg.src = "/src/images/heroImg.jpg";
+
+      setTimeout(() => {
+        bodyEl.style.overflow = "auto";
+        if (heroImgLoaded === true) {
+          setDisplayImg(true);
+        }
+      }, 1000);
+    }
+    checkWhenHeroImgLoads();
+  }, []);
 
   useEffect(() => {
     typewriterContainerRef.current.style.width = `${headingCurrentContent.length}ch`;
@@ -84,7 +111,7 @@ const HeroSection = () => {
   }, [headingCurrentContent]);
 
   return (
-    <section id="hero" className="portfolio__hero-section">
+    <section ref={heroSectionRef} id="hero" className="portfolio__hero-section">
       <div className="portfolio__hero-header-container">
         <header className="portfolio__hero-header">
           <div

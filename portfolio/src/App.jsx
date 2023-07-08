@@ -1,43 +1,52 @@
 import "./App.css";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import AboutProject from "./pages/AboutProject";
 import SharedComponents from "./shared-components/SharedComponents";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Overlays from "./overlays/Overlays";
 
 function App() {
   const [currentScrollLocation, setCurrentScrollLocation] = useState();
   const [projectIndex, setProjectIndex] = useState(0);
+  const [displayImg, setDisplayImg] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname != "/") {
+      setDisplayImg(false);
+    }
+  }, [location.pathname]);
 
   return (
-    <BrowserRouter>
-      <Fragment>
-        <Routes>
+    <Fragment>
+      <Overlays displayImg={displayImg} location={location} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <SharedComponents
+              setCurrentScrollLocation={setCurrentScrollLocation}
+            />
+          }
+        >
           <Route
-            path="/"
+            index
             element={
-              <SharedComponents
+              <Home
+                currentScrollLocation={currentScrollLocation}
                 setCurrentScrollLocation={setCurrentScrollLocation}
+                setDisplayImg={setDisplayImg}
               />
             }
-          >
-            <Route
-              index
-              element={
-                <Home
-                  currentScrollLocation={currentScrollLocation}
-                  setCurrentScrollLocation={setCurrentScrollLocation}
-                />
-              }
-            />
-            <Route
-              path={`/about-project/${projectIndex}`}
-              element={<AboutProject />}
-            ></Route>
-          </Route>
-        </Routes>
-      </Fragment>
-    </BrowserRouter>
+          />
+          <Route
+            path={`/about-project/${projectIndex}`}
+            element={<AboutProject />}
+          ></Route>
+        </Route>
+      </Routes>
+    </Fragment>
   );
 }
 
