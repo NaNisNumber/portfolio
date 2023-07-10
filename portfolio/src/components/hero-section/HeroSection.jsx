@@ -38,7 +38,7 @@ const HeroSection = ({ setDisplayImg }) => {
           ")";
         heroImgLoaded = true;
       };
-      heroImg.src = "/src/images/heroImg.jpg";
+      heroImg.src = "/images/heroImg.jpg";
 
       setTimeout(() => {
         bodyEl.style.overflow = "auto";

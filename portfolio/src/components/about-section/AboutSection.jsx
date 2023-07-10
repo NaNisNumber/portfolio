@@ -1,16 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import "./AboutSection.scss";
-import htmlLogo from "../../images/html.svg";
-import cssLogo from "../../images/css-3.svg";
-import scssLogo from "../../images/sass.svg";
-import jsLogo from "../../images/js.svg";
-import reactLogo from "../../images/react.svg";
-import firebaseLogo from "../../images/firebase-icon.svg";
-import gitLogo from "../../images/git.svg";
-import githubLogo from "../../images/github.svg";
-import nodeLogo from "../../images/nodejs.svg";
-import mongodbLogo from "../../images/mongodb.svg";
-import materialUiLogo from "../../images/materialUi.svg";
+import htmlLogo from "../../../public/images/html.svg";
+import cssLogo from "../../../public/images/css-3.svg";
+import scssLogo from "../../../public/images/sass.svg";
+import jsLogo from "../../../public/images/js.svg";
+import reactLogo from "../../../public/images/react.svg";
+import firebaseLogo from "../../../public/images/firebase-icon.svg";
+import gitLogo from "../../../public/images/git.svg";
+import githubLogo from "../../../public/images/github.svg";
+import nodeLogo from "../../../public/images/nodejs.svg";
+import mongodbLogo from "../../../public/images/mongodb.svg";
+import materialUiLogo from "../../../public/images/materialUI.svg";
 import { motion } from "framer-motion";
 
 const About = () => {

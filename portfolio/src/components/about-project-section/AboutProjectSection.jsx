@@ -1,10 +1,10 @@
 import React from "react";
 import "./AboutProjectSection.scss";
-import retroImage from "../../images/retroImage.png";
-import htmlLogo from "../../images/html.svg";
-import cssLogo from "../../images/css-3.svg";
-import reactLogo from "../../images/react.svg";
-import firebaseLogo from "../../images/firebase-icon.svg";
+import retroImage from "../../../public/images/retroImage.png";
+import htmlLogo from "../../../public/images/html.svg";
+import cssLogo from "../../../public/images/css-3.svg";
+import reactLogo from "../../../public/images/react.svg";
+import firebaseLogo from "../../../public/images/firebase-icon.svg";
 const AboutProjectSection = () => {
   return (
     <section className="portfolio__about-project-section">
