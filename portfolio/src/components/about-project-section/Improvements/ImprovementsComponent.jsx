@@ -3,8 +3,7 @@ import React from "react";
 const ImprovementsComponent = ({ wrongs, updates }) => {
   function toggleUpdateHandler(e) {
     const target = e.target;
-    const container = target.parentElement;
-    const wrongsEl = container.firstChild;
+    const wrongsEl = target.nextElementSibling;
     const updatesEl = wrongsEl.nextElementSibling;
     wrongsEl.classList.toggle("hide-element");
     updatesEl.classList.toggle("hide-element");
@@ -25,14 +24,6 @@ const ImprovementsComponent = ({ wrongs, updates }) => {
 
   return (
     <div className="portfolio__about-project-updates">
-      <ul
-        dangerouslySetInnerHTML={{ __html: `${wrongs}` }}
-        className="portfolio__about-ul portfolio__about-ul--wrongs"
-      ></ul>
-      <ul
-        dangerouslySetInnerHTML={{ __html: `${updates}` }}
-        className="portfolio__about-ul portfolio__about-ul--update hide-element"
-      ></ul>
       <button
         onClick={(e) => {
           toggleUpdateHandler(e);
@@ -41,6 +32,14 @@ const ImprovementsComponent = ({ wrongs, updates }) => {
       >
         {"SHOW UPDATE"}
       </button>
+      <ul
+        dangerouslySetInnerHTML={{ __html: `${wrongs}` }}
+        className="portfolio__about-ul portfolio__about-ul--wrongs"
+      ></ul>
+      <ul
+        dangerouslySetInnerHTML={{ __html: `${updates}` }}
+        className="portfolio__about-ul portfolio__about-ul--update hide-element"
+      ></ul>
     </div>
   );
 };
