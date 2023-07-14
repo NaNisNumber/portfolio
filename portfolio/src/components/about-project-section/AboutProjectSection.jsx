@@ -1,11 +1,17 @@
 import React from "react";
 import "./AboutProjectSection.scss";
-import retroImage from "../../../public/images/retroImage.png";
-import htmlLogo from "../../../public/images/html.svg";
-import cssLogo from "../../../public/images/css-3.svg";
-import reactLogo from "../../../public/images/react.svg";
-import firebaseLogo from "../../../public/images/firebase-icon.svg";
+import retroImage from "/images/retroImage.png";
+import htmlLogo from "/images/html.svg";
+import cssLogo from "/images/css-3.svg";
+import reactLogo from "/images/react.svg";
+import firebaseLogo from "/images/firebase-icon.svg";
+import ImprovementsComponent from "./Improvements/ImprovementsComponent";
+import improvementsArr from "./improvementsArr";
+
 const AboutProjectSection = () => {
+  // to display an update or a wrong on a certain element and not all you need to reffer to a single target;
+  // you could put different id's to each element you want to display;
+
   return (
     <section className="portfolio__about-project-section">
       <main className="portfolio__about-project-main">
@@ -82,29 +88,19 @@ const AboutProjectSection = () => {
                   </li>
                 </ul>
               </div>
-              <div className="portfolio__about-project-about-inner-container">
-                <p className="portfolio__about-project-description">
-                  The things I know I could've done better
-                </p>
-                <ul className="portfolio__about-ul">
-                  <li>
-                    The request to the API{" "}
-                    <span>
-                      (well, not directly to the API, it was made through a
-                      proxy server),
-                    </span>{" "}
-                    I should have done it in steps for that requested data, so
-                    all that chunk of data would travel in multiple requests.
-                    The bad thing of what I did is that when there is no decent
-                    conection to the internet, that data will travel very slow
-                    and it will take a long time to arrive and be displayed to
-                    the user.
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
+        <div className="portfolio__about-project-improvement">
+          <p className="portfolio__about-project-description portfolio__about-project-description--improvement">
+            The things I know I could've done better
+          </p>
+        </div>
+        {improvementsArr.map((obj) => {
+          return (
+            <ImprovementsComponent updates={obj.updates} wrongs={obj.wrongs} />
+          );
+        })}
       </main>
     </section>
   );

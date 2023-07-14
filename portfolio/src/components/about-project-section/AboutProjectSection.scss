@@ -105,3 +105,58 @@
   color: #c7672b;
   text-shadow: none;
 }
+.portfolio__about-project-improvement {
+  display: flex;
+  justify-content: center;
+}
+.portfolio__about-project-updates {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(38, 42, 60);
+  margin: 0 auto;
+  padding: 1.6rem;
+  border-radius: 6px;
+  margin-bottom: 2.4rem;
+
+  @include mixins.respond-to(large) {
+    grid-template-columns: 1fr 1fr;
+    width: 70%;
+  }
+}
+.portfolio__about-ul--wrongs,
+.portfolio__about-ul--update {
+  margin-bottom: 0.8rem;
+  width: fit-content;
+}
+
+.portfolio__about-show-update-btn {
+  font-size: 1.2rem;
+  color: #fff;
+  border-style: none;
+  background-color: #c7682b;
+  margin: 0 auto;
+  margin-top: auto;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.hide-element {
+  height: 0;
+  overflow: hidden;
+}
+.portfolio__about-project-description--improvement {
+  color: #c7682b;
+  mix-blend-mode: normal;
+  text-shadow: none;
+  font-weight: 700;
+}
+@keyframes scaleAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
