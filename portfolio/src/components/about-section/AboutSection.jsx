@@ -9,7 +9,7 @@ import firebaseLogo from "/images/firebase-icon.svg";
 import gitLogo from "/images/git.svg";
 import githubLogo from "/images/github.svg";
 import nodeLogo from "/images/nodejs.svg";
-import mongodbLogo from "/images/mongodb.svg";
+import mongodbLogo from "/images/mongoDb.svg";
 import materialUiLogo from "/images/materialUI.svg";
 import { motion } from "framer-motion";
 
