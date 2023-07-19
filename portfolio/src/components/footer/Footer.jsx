@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
-import { motion } from "framer-motion";
 import "./Footer.scss";
 
 const Footer = () => {
@@ -45,11 +44,14 @@ const Footer = () => {
         (result) => {
           if (result.status === 200) {
             resetForm();
+            messageWasSentRef.current.style.backgroundColor = "green";
             setMessageWasSent("Your message was sent with success !");
             setFormStatusCode(200);
           }
         },
         (error) => {
+          messageWasSentRef.current.style.backgroundColor = "red";
+          setFormStatusCode(error.status);
           setMessageWasSent(
             `Something happened, your message couldn't be sent:error ${error.status}`
           );
@@ -60,6 +62,10 @@ const Footer = () => {
   useEffect(() => {
     if (formStatusCode === null) return;
     if (formStatusCode == 200) {
+      messageWasSentRef.current.classList.add(
+        "portfolio__footer-contact-message-sent-text--toggle"
+      );
+    } else if (formStatusCode != 200 && formStatusCode != null) {
       messageWasSentRef.current.classList.add(
         "portfolio__footer-contact-message-sent-text--toggle"
       );
