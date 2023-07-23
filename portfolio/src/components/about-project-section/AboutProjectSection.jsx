@@ -96,9 +96,13 @@ const AboutProjectSection = () => {
             The things I know I could've done better
           </p>
         </div>
-        {improvementsArr.map((obj) => {
+        {improvementsArr.map((obj, i) => {
           return (
-            <ImprovementsComponent updates={obj.updates} wrongs={obj.wrongs} />
+            <ImprovementsComponent
+              key={i}
+              updates={obj.updates}
+              wrongs={obj.wrongs}
+            />
           );
         })}
       </main>
