@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
+import questionMarkIcon from "/images/question-mark.svg";
 import "./PortfolioSection.scss";
 import { Link } from "react-router-dom";
 import { animateScroll } from "react-scroll";
@@ -10,6 +11,12 @@ const Portfolio = () => {
   const [sphereActive, setSphereActive] = useState(false);
   const [floatIntervalIds, setFloatIntervalIds] = useState({});
 
+  const slugify = function (name) {
+    const lowerCaseName = name?.toLowerCase();
+    const slug = lowerCaseName?.replaceAll(" ", "-");
+    return slug;
+  };
+
   const projectsData = [
     {
       projectExists: false,
@@ -20,11 +27,10 @@ const Portfolio = () => {
       position: "left",
     },
     {
-      projectExists: false,
-      name: null,
-      livePreviewUrl: null,
-      repoUrl: null,
-      aboutProjectUrl: null,
+      projectExists: true,
+      name: "blog website",
+      livePreviewUrl: "https://nanisnumber.github.io/MyBlog/",
+      repoUrl: "https://github.com/NaNisNumber/MyBlog",
       position: "top",
     },
     {
@@ -32,7 +38,6 @@ const Portfolio = () => {
       name: "Retro Games Website",
       livePreviewUrl: "https://nanisnumber.github.io/Retro-games-website_P/",
       repoUrl: "https://github.com/NaNisNumber/Retro-games-website_P",
-      aboutProjectUrl: "/about-project/0",
       position: "right",
     },
     {
@@ -48,9 +53,9 @@ const Portfolio = () => {
   const projects = projectsData.map((project) => {
     const projectExists = project.projectExists;
     const projectName = project.name;
+    const slug = slugify(projectName);
     const livePreviewUrl = project.livePreviewUrl;
     const repoUrl = project.repoUrl;
-    const aboutProjectUrl = project.aboutProjectUrl;
     const position = project.position;
 
     return (
@@ -83,18 +88,18 @@ const Portfolio = () => {
             <Link
               onClick={scrollToTop}
               className="portfolio__portfolio-project-link"
-              to={`${aboutProjectUrl}`}
+              to={`/about-project/${slug}`}
             >
               <p>About project</p>
             </Link>
           </div>
         )}
         {projectExists && (
-          <ion-icon
+          <img
+            className="portfolio__portfolio-project-question-mark"
             data-mark="question"
-            class="portfolio__portfolio-project-question-mark"
-            name="help-outline"
-          ></ion-icon>
+            src={questionMarkIcon}
+          ></img>
         )}
       </div>
     );

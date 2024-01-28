@@ -8,7 +8,7 @@ import Overlays from "./overlays/Overlays";
 
 function App() {
   const [currentScrollLocation, setCurrentScrollLocation] = useState();
-  const [projectIndex, setProjectIndex] = useState(0);
+
   const [displayImg, setDisplayImg] = useState(false);
   const location = useLocation();
 
@@ -40,10 +40,7 @@ function App() {
               />
             }
           />
-          <Route
-            path={`/about-project/${projectIndex}`}
-            element={<AboutProject />}
-          ></Route>
+          <Route path={`/about-project/:id`} element={<AboutProject />}></Route>
         </Route>
       </Routes>
     </Fragment>

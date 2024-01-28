@@ -73,16 +73,17 @@
   }
 }
 .portfolio__about-project-description {
-  color: #084f52;
+  color: #c7682b;
+  font-weight: 700;
   font-size: 2rem;
   font-family: "Lato";
-  text-shadow: 1px 1px 0 rgb(181, 228, 228);
-  mix-blend-mode: screen;
+
   margin-bottom: 1rem;
   @include mixins.respond-to(large) {
     font-size: 2rem;
   }
 }
+
 .portfolio__about-ul {
   display: flex;
   flex-direction: column;
@@ -144,12 +145,7 @@
   height: 0;
   overflow: hidden;
 }
-.portfolio__about-project-description--improvement {
-  color: #c7682b;
-  mix-blend-mode: normal;
-  text-shadow: none;
-  font-weight: 700;
-}
+
 @keyframes scaleAnimation {
   0% {
     opacity: 0;

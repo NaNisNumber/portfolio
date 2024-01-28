@@ -11,6 +11,15 @@ import githubLogo from "/images/github.svg";
 import nodeLogo from "/images/nodejs.svg";
 import mongodbLogo from "/images/mongoDb.svg";
 import materialUiLogo from "/images/materialUI.svg";
+import mantineUiLogo from "/images/mantineUI.svg";
+import tailwindLogo from "/images/tailwind.svg";
+import sanityLogo from "/images/sanity.svg";
+import dumbbellIcon from "/images/dumbbell.png";
+import readingIcon from "/images/reading.png";
+import movielIcon from "/images/movie.png";
+import gamingIcon from "/images/gaming.png";
+import programmingIcon from "/images/programming.png";
+import headphonesIcon from "/images/headphones.png";
 import { motion } from "framer-motion";
 
 const About = () => {
@@ -68,7 +77,7 @@ const About = () => {
             transition={{ delay: 0.4 }}
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="portfolio__about-text portfolio__about-text--name"
+            className="portfolio__about-text  portfolio__about-text--name"
           >
             My name is Sergiu. I'm 21 years old and I'm a self-taught front-end
             web developer.
@@ -111,6 +120,17 @@ const About = () => {
                   <span> GITHUB</span>{" "}
                   <img alt="github logo" src={githubLogo} />
                 </li>
+                <li>
+                  <span> MANTINE UI</span>{" "}
+                  <img alt="mantine ui logo" src={mantineUiLogo} />
+                </li>
+                <li>
+                  <span> TAILWIND CSS</span>{" "}
+                  <img alt="mantine ui logo" src={tailwindLogo} />
+                </li>
+                <li>
+                  <span>SANITY</span> <img alt="sanity logo" src={sanityLogo} />
+                </li>
               </ul>
             </div>
             <div
@@ -125,38 +145,53 @@ const About = () => {
                 />
                 <img
                   className="portfolio__about-skills-icons-icon "
-                  alt="html logo"
+                  alt="css logo"
                   src={cssLogo}
                 />
                 <img
                   className="portfolio__about-skills-icons-icon portfolio__about-skills-icons-icon--bottom"
-                  alt="html logo"
+                  alt="scss logo"
                   src={scssLogo}
                 />
                 <img
                   className="portfolio__about-skills-icons-icon "
-                  alt="html logo"
+                  alt="js logo"
                   src={jsLogo}
                 />
                 <img
                   className="portfolio__about-skills-icons-icon portfolio__about-skills-icons-icon--bottom"
-                  alt="html logo"
+                  alt="react logo"
                   src={reactLogo}
                 />
                 <img
                   className="portfolio__about-skills-icons-icon "
-                  alt="html logo"
+                  alt="firebase logo"
                   src={firebaseLogo}
                 />
                 <img
                   className="portfolio__about-skills-icons-icon portfolio__about-skills-icons-icon--bottom"
-                  alt="html logo"
+                  alt="git logo"
                   src={gitLogo}
                 />
                 <img
                   className="portfolio__about-skills-icons-icon "
-                  alt="html logo"
+                  alt="github logo"
                   src={githubLogo}
+                />
+                <img
+                  className="portfolio__about-skills-icons-icon portfolio__about-skills-icons-icon--bottom"
+                  alt="mantine logo"
+                  src={mantineUiLogo}
+                />
+                <img
+                  className="portfolio__about-skills-icons-icon "
+                  alt="tailwind css logo"
+                  src={tailwindLogo}
+                />
+                <img
+                  className="portfolio__about-skills-icons-icon portfolio__about-skills-icons-icon--bottom"
+                  alt="sanity logo"
+                  src={sanityLogo}
                 />
               </div>
             </div>
@@ -195,7 +230,7 @@ const About = () => {
             transition={{ delay: 0.4 }}
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="portfolio__about-text"
+            className="portfolio__about-text portfolio__about-me-text "
           >
             My coding journey started about a year and a half ago, and since
             then I keep my passion alive, although there are days when not much
@@ -207,7 +242,7 @@ const About = () => {
             transition={{ delay: 0.4 }}
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="portfolio__about-text"
+            className="portfolio__about-text portfolio__about-me-text "
           >
             Being an analytical person, I like to look through multiple options
             before making a decision.
@@ -217,20 +252,58 @@ const About = () => {
             transition={{ delay: 0.4 }}
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="portfolio__about-text"
+            className="portfolio__about-text portfolio__about-me-text "
           >
-            Instead of being a party person, I prefer places that are more
-            quiet.
+            Instead of being a party person I prefer places that are more quiet,
+            without a tremendous amount of people.
           </motion.p>
           <motion.p
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="portfolio__about-text"
+            className="portfolio__about-text portfolio__about-me-text "
           >
-            Anyway, that's just a small piece of the puzzle that I am.
+            I think sometimes less is better, less salt in the food, less
+            options but never less money.
           </motion.p>
+          <motion.p
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="portfolio__about-text portfolio__about-me-text--hobies "
+          >
+            Some of my hobbies are:
+          </motion.p>
+          <motion.div
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="portfolio__about-text portfolio__about-me-text "
+          >
+            <div className="portfolio__hobbies-grid">
+              <div className="portfolio__hobbie-item">
+                <img src={dumbbellIcon}></img>
+              </div>{" "}
+              <div className="portfolio__hobbie-item">
+                <img src={readingIcon}></img>
+              </div>
+              <div className="portfolio__hobbie-item">
+                <img src={movielIcon}></img>
+              </div>
+              <div className="portfolio__hobbie-item">
+                <img src={gamingIcon}></img>
+              </div>
+              <div className="portfolio__hobbie-item">
+                <img src={programmingIcon}></img>
+              </div>
+              <div className="portfolio__hobbie-item">
+                <img src={headphonesIcon}></img>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

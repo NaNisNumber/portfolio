@@ -33,12 +33,11 @@
   }
 }
 .portfolio__about-text {
-  color: #084f52;
+  color: #fff;
   font-size: 1.4rem;
   line-height: 1.4;
   font-family: "Lato";
-  text-shadow: 1px 1px 0 rgb(181, 228, 228);
-  mix-blend-mode: screen;
+
   @include mixins.respond-to(large) {
     font-size: 1.6rem;
     line-height: 1.6;
@@ -49,6 +48,14 @@
   text-align: center;
   margin-bottom: 1.6rem;
 }
+.portfolio__about-me-text {
+  color: #c7682b;
+  margin-bottom: -0.5rem;
+}
+.portfolio__about-me-text--hobies {
+  color: teal;
+}
+
 .portfolio__about-skills-container {
   display: grid;
   gap: 1.6rem;
@@ -65,28 +72,30 @@
   align-items: center;
 
   @include mixins.respond-to(large) {
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1.5fr;
+  }
+  @include mixins.respond-to(extra-large) {
+    grid-template-columns: 1fr 3fr;
   }
 }
 .portfolio__about-skills-icons-container {
-  justify-self: center;
   display: none;
   @include mixins.respond-to(large) {
     display: block;
   }
   @include mixins.respond-to(extra-large) {
-    width: 70%;
+    width: 100%;
     justify-self: flex-start;
   }
 }
 
 .portfolio__about-skills-icons-inner-container {
-  height: 100px;
+  height: 200px;
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(8, 1fr);
   @include mixins.respond-to(extra-large) {
-    height: 150px;
+    height: 300px;
   }
 }
 .portfolio__about-skills-icons-icon {
@@ -108,7 +117,6 @@
 }
 .portfolio__about-skills-ul {
   color: #c7682b;
-  margin-left: 1rem;
   font-size: 1.4rem;
   display: flex;
   flex-direction: column;
@@ -127,7 +135,23 @@
   width: 1.6rem;
   height: 1.6rem;
 }
+.portfolio__hobbies-grid {
+  display: grid;
 
+  justify-items: center;
+  gap: 1rem;
+  @include mixins.respond-to(medium-small) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.portfolio__hobbie-item {
+  background-color: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+}
 // scaleSkillIcon animation
 
 @keyframes scaleSkillIcon {

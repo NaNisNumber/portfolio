@@ -43,6 +43,8 @@
   }
 }
 .portfolio__portfolio-sphere {
+  position: relative;
+  z-index: 100;
   grid-area: sphere;
   align-self: center;
   background-color: #fff;
@@ -75,6 +77,7 @@
 .portfolio__portfolio-project-question-mark {
   position: absolute;
   font-size: 2.4rem;
+  color: #c7682b;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

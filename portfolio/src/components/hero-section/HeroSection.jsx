@@ -15,7 +15,6 @@ const HeroSection = ({ setDisplayImg }) => {
   const typewriterAfterRef = useRef(null);
   const heroHeadingRef = useRef(null);
   const typewriterContainerRef = useRef(null);
-  const heroSectionRef = useRef(null);
   const heroHeadingContent = [
     "Hello",
     "My name is Sergiu",
@@ -25,29 +24,21 @@ const HeroSection = ({ setDisplayImg }) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    function checkWhenHeroImgLoads() {
+    function checkHeroImgLoaded() {
       const bodyEl = document.getElementById("body");
       const heroImg = new Image();
       bodyEl.style.overflow = "hidden";
-      let heroImgLoaded = false;
 
       heroImg.onload = function () {
-        heroSectionRef.current.style.backgroundImage =
-          "linear-gradient(rgba(4, 11, 63), rgba(4, 11, 63, 0.3)),url(" +
-          heroImg.src +
-          ")";
-        heroImgLoaded = true;
-      };
-      heroImg.src = "/images/heroImg.jpg";
-
-      setTimeout(() => {
-        bodyEl.style.overflow = "auto";
-        if (heroImgLoaded === true) {
+        setTimeout(() => {
+          bodyEl.style.overflow = "auto";
           setDisplayImg(true);
-        }
-      }, 1000);
+        }, 1000);
+      };
+
+      heroImg.src = "/images/heroImg.jpg";
     }
-    checkWhenHeroImgLoads();
+    checkHeroImgLoaded();
   }, []);
 
   useEffect(() => {
@@ -111,7 +102,14 @@ const HeroSection = ({ setDisplayImg }) => {
   }, [headingCurrentContent]);
 
   return (
-    <section ref={heroSectionRef} id="hero" className="portfolio__hero-section">
+    <section
+      style={{
+        background: `linear-gradient(rgba(4, 11, 63), rgba(4, 11, 63, 0.3)), url(/images/heroImg.jpg)`,
+        backgroundSize: "cover",
+      }}
+      id="hero"
+      className="portfolio__hero-section"
+    >
       <div className="portfolio__hero-header-container">
         <header className="portfolio__hero-header">
           <div
