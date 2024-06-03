@@ -1,0 +1,381 @@
+@use "../../mixins/mixins.scss" as mixins;
+
+:root {
+  --typewriterDelay: 1s;
+  --typewriterSpeed: 2s;
+  --typewriterSteps: steps(5);
+}
+
+.portfolio__hero-section {
+  // background-size: cover;
+  // background-position: top;
+  background-color: #040b3f;
+  padding: 1.8rem;
+  height: 100vh;
+  position: relative;
+  z-index: -1;
+  overflow: hidden;
+
+  @include mixins.respond-to(medium) {
+    padding: 2.4rem;
+  }
+}
+
+.portfolio__hero-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio__hero-header-container {
+  width: 26ch;
+  font-size: 1.2rem;
+
+
+  @include mixins.respond-to(medium) {
+    font-size: 1.6rem;
+  }
+
+  @include mixins.respond-to(large) {
+    font-size: 2.4rem;
+  }
+}
+
+.portfolio__hero-header-inner-container {
+  position: relative;
+  font-size: 1.2rem;
+  width: max-content;
+
+  @include mixins.respond-to(medium) {
+
+    font-size: 1.6rem;
+  }
+
+  @include mixins.respond-to(large) {
+
+    font-size: 2.4rem;
+  }
+}
+
+.portfolio__hero-heading,
+.portfolio__hero-heading--secondary {
+  overflow: hidden;
+  color: #c7682b;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  font-weight: 600;
+
+  @include mixins.respond-to(medium-small) {
+    font-size: 1.4rem;
+  }
+
+  @include mixins.respond-to(medium) {
+    font-size: 1.6rem;
+  }
+
+  @include mixins.respond-to(large) {
+    font-size: 1.9rem;
+  }
+
+  @include mixins.respond-to(extra-large) {
+    font-size: 2.4rem;
+  }
+
+}
+
+.portfolio__hero-heading--secondary {
+  width: max-content;
+  align-self: center;
+  color: #c7682b;
+}
+
+.portfolio__hero-typewriter-before,
+.portfolio__hero-typewriter-after {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+
+.portfolio__hero-typewriter-before--initial-animation0,
+.portfolio__hero-typewriter-before--initial-animation1,
+.portfolio__hero-typewriter-before--initial-animation2 {
+  animation: typewriter var(--typewriterSpeed) forwards;
+  background-color: #040b3f;
+}
+
+
+.portfolio__hero-typewriter-before--initial-animation0 {
+
+  animation-timing-function: steps(5);
+}
+
+.portfolio__hero-typewriter-before--initial-animation1 {
+  animation-delay: 2s;
+  animation-timing-function: steps(17);
+}
+
+.portfolio__hero-typewriter-before--initial-animation2 {
+  animation-delay: 4s;
+  animation-timing-function: steps(31);
+}
+
+
+
+.portfolio__hero-typewriter-after--initial-animation0,
+.portfolio__hero-typewriter-after--initial-animation1,
+.portfolio__hero-typewriter-after--initial-animation2 {
+  background-color: teal;
+  width: 4px;
+
+  animation: typewriter var(--typewriterSpeed) var(--typewriterSteps) forwards,
+    blink 750ms var(--typewriterSteps) 3 forwards;
+}
+
+.portfolio__hero-typewriter-after--initial-animation0 {
+  animation-timing-function: steps(5);
+}
+
+.portfolio__hero-typewriter-after--initial-animation1 {
+  background-color: transparent;
+  animation-delay: 2s;
+  animation-timing-function: steps(17);
+}
+
+.portfolio__hero-typewriter-after--initial-animation2 {
+  background-color: transparent;
+  animation-delay: 4s;
+  animation-timing-function: steps(26);
+}
+
+
+.portfolio__hero-svg-rect {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 10%;
+  height: 40%;
+
+
+  @include mixins.respond-to(medium) {
+    height: 60%;
+  }
+
+  @include mixins.respond-to(large) {}
+}
+
+.portfolio__hero-svg-ec1 {
+  position: absolute;
+  z-index: 3;
+  top: 7%;
+  transform: scale(0.6) rotate(50deg);
+  transition: transform 0.2s ease;
+  right: -40%;
+  animation: float-mobile-ec1 alternate 3s infinite ease-in;
+
+  @include mixins.respond-to(medium-small) {
+    transform: scale(0.7);
+    right: -30%;
+    animation: float-md-small alternate 3s infinite ease-in;
+  }
+
+  @include mixins.respond-to(large) {
+    right: -10%;
+    transform: scale(1);
+    top: -20%;
+    animation: float-lg alternate 3s infinite ease-in;
+  }
+
+  @include mixins.respond-to(extra-large) {
+    animation: float-extra-lg alternate 3s infinite ease-in;
+  }
+}
+
+.portfolio__hero-svg-ec2 {
+  transform: scale(0.6);
+  position: absolute;
+  right: -50%;
+  top: 20%;
+  z-index: 1;
+  transition: transform 0.3s ease;
+  animation: float-mobile alternate 3s infinite ease-in;
+
+  @include mixins.respond-to(medium-small) {
+    right: -30%;
+    transform: scale(0.7);
+    animation: float-md-small alternate 3s infinite ease-in;
+
+  }
+
+  @include mixins.respond-to(large) {
+    top: 5%;
+    right: -10%;
+    transform: scale(1);
+    animation: float-lg alternate 3s infinite ease-in;
+  }
+
+  @include mixins.respond-to(extra-large) {
+    animation: float-extra-lg alternate 3s infinite ease-in;
+  }
+
+}
+
+.portfolio__hero-svg-ec3 {
+  transform: scale(0.6);
+  position: absolute;
+  right: -40%;
+  top: 40%;
+  z-index: 4;
+  transition: transform 0.3s ease;
+  animation: float-mobile alternate 3s infinite ease-in;
+
+  @include mixins.respond-to(medium-small) {
+    right: -30%;
+    transform: scale(0.7);
+    animation: float-md-small alternate 3s infinite ease-in;
+
+  }
+
+  @include mixins.respond-to(large) {
+    right: -10%;
+    transform: scale(1);
+    animation: float-lg alternate 3s infinite ease-in;
+  }
+
+  @include mixins.respond-to(extra-large) {
+    animation: float-extra-lg alternate 3s infinite ease-in;
+  }
+
+}
+
+.portfolio__hero-svg-ec4 {
+  transform: scale(0.6);
+  position: absolute;
+  right: -60%;
+  top: 30%;
+  z-index: 0;
+  transition: transform 0.3s ease;
+  animation: float-mobile alternate 3s infinite ease-in;
+
+  @include mixins.respond-to(medium-small) {
+    right: -30%;
+    transform: scale(0.7);
+    animation: float-md-small alternate 3s infinite ease-in;
+
+  }
+
+
+
+  @include mixins.respond-to(large) {
+    right: -10%;
+    top: 20%;
+    transform: scale(1);
+    animation: float-lg alternate 3s infinite ease-in;
+
+  }
+
+  @include mixins.respond-to(extra-large) {
+    animation: float-extra-lg alternate 3s infinite ease-in;
+    top: 30%;
+  }
+
+}
+
+
+
+@keyframes typewriter {
+  to {
+    left: 100%;
+  }
+
+}
+
+@keyframes blink {
+  from {
+    background-color: teal;
+  }
+
+  to {
+    background-color: transparent;
+  }
+}
+
+// CLOUD ANIAMTION
+
+@keyframes float-mobile-ec1 {
+  0% {
+    transform: translate(0, 0) scale(0.6) rotate(50deg);
+  }
+
+  90% {
+    transform: translate(15px, 20px) scale(0.6) rotate(50deg);
+  }
+
+  100% {
+    transform: translate(15px, 20px) scale(0.6) rotate(50deg);
+
+  }
+}
+
+@keyframes float-mobile {
+  0% {
+    transform: translate(0, 0) scale(0.6);
+  }
+
+  90% {
+    transform: translate(15px, 20px) scale(0.6);
+  }
+
+  100% {
+    transform: translate(15px, 20px) scale(0.6);
+
+  }
+}
+
+@keyframes float-md-small {
+  0% {
+    transform: translate(0, 0) scale(0.7);
+  }
+
+  90% {
+    transform: translate(15px, 20px) scale(0.7);
+  }
+
+  100% {
+    transform: translate(15px, 20px) scale(0.7);
+
+  }
+}
+
+@keyframes float-lg {
+  0% {
+    transform: translate(0, 0) scale(0.7);
+  }
+
+  90% {
+    transform: translate(15px, 20px) scale(0.7);
+  }
+
+  100% {
+    transform: translate(15px, 20px) scale(0.7);
+
+  }
+}
+
+@keyframes float-extra-lg {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(50deg);
+  }
+
+  95% {
+    transform: translate(15px, 20px) scale(1) rotate(50deg);
+  }
+
+  100% {
+    transform: translate(15px, 20px) scale(1) rotate(50deg);
+
+  }
+}
+
+//

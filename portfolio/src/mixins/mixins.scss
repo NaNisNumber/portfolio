@@ -1,0 +1,29 @@
+$small-screen: 350px;
+$medium-small-screen: 500px;
+$medium-screen: 700px;
+$large-screen: 900px;
+$extra-large-screen: 1200px;
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == small {
+    @media (min-width: $small-screen) {
+      @content;
+    }
+  } @else if $breakpoint == medium-small {
+    @media (min-width: $medium-small-screen) {
+      @content;
+    }
+  } @else if $breakpoint == medium {
+    @media (min-width: $medium-screen) {
+      @content;
+    }
+  } @else if $breakpoint == large {
+    @media (min-width: $large-screen) {
+      @content;
+    }
+  } @else if $breakpoint == extra-large {
+    @media (min-width: $extra-large-screen) {
+      @content;
+    }
+  }
+}

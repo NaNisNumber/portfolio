@@ -1,0 +1,36 @@
+@use "../../mixins/mixins.scss" as mixins;
+.portfolio__navbar {
+  z-index: 1000;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #c7682b;
+}
+.portfolio__navbar-ul a:link,
+.portfolio__navbar-ul a:visited {
+  text-decoration: none;
+}
+
+.portfolio__navbar-ul {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  @include mixins.respond-to(large) {
+    justify-content: space-between;
+    width: 60%;
+  }
+}
+.portfolio__navbar-li {
+  padding: 0.4rem;
+  font-family: "Lato";
+  font-size: 1.2rem;
+  color: #fff;
+  transition: 0.3s all;
+  cursor: pointer;
+}
+.portfolio__navbar-li:hover {
+  background-color: #fff;
+  color: #040b3f;
+}

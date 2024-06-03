@@ -1,0 +1,179 @@
+@use "../../mixins/mixins.scss" as mixins;
+
+.portfolio__about-project-section {
+  min-height: 100vh;
+  background-color: teal;
+  padding: 3.6rem 1.8rem;
+
+  @include mixins.respond-to(medium-small) {
+    padding: 4.8rem 2.4rem;
+  }
+}
+
+.portfolio__about-project-main {}
+
+.portfolio__about-project-header {
+  margin-bottom: 2.4rem;
+}
+
+.portfolio__about-project-heading {
+  font-family: "Lato";
+  color: #c7682b;
+  font-size: 2.4rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.portfolio__about-project-container {
+  margin: 0 auto;
+
+  @include mixins.respond-to(large) {
+    grid-template-columns: repeat(2, 1fr);
+    width: 50%;
+  }
+}
+
+.portfolio__about-project-about-inner-container {
+  margin-bottom: 2.4rem;
+}
+
+.portfolio__about-project-container-grid {
+  gap: 2.4rem;
+}
+
+.portfolio__about-project-inner-container {
+  margin-bottom: 2.4rem;
+}
+
+.portfolio__about-project-main-img {
+  width: 100%;
+}
+
+.portfolio__about-logo-container {
+  width: 100%;
+  background-color: #c7672b;
+  padding: 0.6rem 1rem;
+  margin-top: -2px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+}
+
+.portfolio__about-logo-container img {
+  width: 24px;
+  height: 24px;
+
+  @include mixins.respond-to(large) {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.portfolio__about-project-name {
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  font-family: "Lato";
+  text-shadow: 1px 1px 0 rgb(181, 228, 228);
+  mix-blend-mode: screen;
+  margin-bottom: 1rem;
+  text-align: center;
+
+  @include mixins.respond-to(large) {
+    text-align: start;
+    font-size: 1.6rem;
+    line-height: 1.6;
+  }
+}
+
+.portfolio__about-project-description {
+  color: #c7682b;
+  font-weight: 700;
+  font-size: 2rem;
+  font-family: "Lato";
+
+  margin-bottom: 1rem;
+
+  @include mixins.respond-to(large) {
+    font-size: 2rem;
+  }
+}
+
+.portfolio__about-ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  list-style: none;
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  font-family: "Lato";
+  text-shadow: 1px 1px 0 rgb(181, 228, 228);
+  mix-blend-mode: screen;
+
+  @include mixins.respond-to(large) {
+    text-align: start;
+    font-size: 1.4rem;
+    line-height: 1.4;
+  }
+}
+
+.portfolio__about-ul span {
+  color: #c7672b;
+  text-shadow: none;
+}
+
+.portfolio__about-project-improvement {
+  display: flex;
+  justify-content: center;
+}
+
+.portfolio__about-project-updates {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(38, 42, 60);
+  margin: 0 auto;
+  padding: 1.6rem;
+  border-radius: 6px;
+  margin-bottom: 2.4rem;
+
+  @include mixins.respond-to(large) {
+    grid-template-columns: 1fr 1fr;
+    width: 70%;
+  }
+}
+
+.portfolio__about-ul--wrongs,
+.portfolio__about-ul--update {
+  margin-bottom: 0.8rem;
+  width: fit-content;
+}
+
+.portfolio__about-show-update-btn {
+  font-size: 1.2rem;
+  color: #fff;
+  align-self: start;
+  border-style: none;
+  background-color: #c7682b;
+  margin-bottom: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.hide-element {
+  height: 0;
+  overflow: hidden;
+}
+
+@keyframes scaleAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
